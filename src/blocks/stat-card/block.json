@@ -1,0 +1,57 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "dcx-benchmark-luxe/stat-card",
+  "version": "1.0.0",
+  "title": "DCX Stat Card",
+  "category": "common",
+  "icon": "chart-bar",
+  "description": "Carte statistique avec chiffre principal, suffixe et libellé.",
+  "keywords": ["dcx", "stat", "kpi", "chiffre", "benchmark"],
+  "textdomain": "dcx-benchmark-luxe",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "attributes": {
+    "number": {
+      "type": "string",
+      "default": ""
+    },
+    "suffix": {
+      "type": "string",
+      "default": ""
+    },
+    "suffixPosition": {
+      "type": "string",
+      "default": "sup"
+    },
+    "label": {
+      "type": "string",
+      "default": ""
+    },
+    "accentColor": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": true,
+    "color": {
+      "background": false,
+      "text": false
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "width": true,
+      "style": true,
+      "__experimentalDefaultControls": {
+        "color": true,
+        "radius": true,
+        "width": true,
+        "style": true
+      }
+    }
+  }
+}

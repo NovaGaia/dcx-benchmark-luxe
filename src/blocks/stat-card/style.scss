@@ -1,0 +1,48 @@
+.dcx-stat-card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 2rem 2.5rem;
+	overflow: hidden;
+	border-style: solid;
+
+	// Ligne supérieure colorée (remplace la bordure du haut)
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 4px;
+		background-color: var(--dcx-stat-accent, transparent);
+	}
+
+	&.has-accent {
+		border-top-color: transparent !important;
+	}
+
+	&__number {
+		margin: 0 0 1rem;
+		font-size: clamp(2.5rem, 5vw, 4rem);
+		font-weight: 700;
+		line-height: 1;
+		text-align: center;
+	}
+
+	&__suffix {
+		font-size: 0.5em;
+		font-weight: 700;
+		color: inherit;
+	}
+
+	&__label {
+		margin: 0;
+		font-size: clamp(0.7rem, 1.2vw, 0.85rem);
+		font-weight: 500;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		text-align: center;
+	}
+}
