@@ -42,4 +42,3 @@ Quand `accentColor` est défini, une barre colorée de 4 px apparaît en haut de
 |----------------------|---------------------------|-------------------|
 | `--dcx-stat-accent`  | couleur choisie           | `transparent`     |
 
-**Dépréciations :** `v1` (sans classe `has-accent`), `v2` (avec `borderTopColor` inline).
