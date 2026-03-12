@@ -1,0 +1,25 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "dcx-benchmark-luxe/example-block",
+  "version": "1.0.0",
+  "title": "DCX Example Block",
+  "category": "common",
+  "icon": "star-filled",
+  "description": "Un bloc Gutenberg d'exemple.",
+  "keywords": ["dcx", "benchmark", "luxe"],
+  "textdomain": "dcx-benchmark-luxe",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "attributes": {
+    "content": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": true
+  }
+}

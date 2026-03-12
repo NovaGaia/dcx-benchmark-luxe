@@ -1,0 +1,16 @@
+{
+  "name": "dcx-benchmark-luxe-plugin",
+  "version": "1.0.0",
+  "description": "Blocs Gutenberg pour DCX Benchmark Luxe",
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start",
+    "lint:js": "wp-scripts lint-js",
+    "lint:css": "wp-scripts lint-style",
+    "packages-update": "wp-scripts packages-update"
+  },
+  "packageManager": "pnpm@10.27.0",
+  "devDependencies": {
+    "@wordpress/scripts": "^30.0.0"
+  }
+}
