@@ -50,6 +50,20 @@ Quand `accentColor` est défini, une barre colorée de 4 px apparaît en haut de
 
 ---
 
+### `dcx-benchmark-luxe/horizontal-bar-chart`
+
+Graphique à barres horizontales avec configuration des couleurs via la page de réglages admin.
+
+**Page de réglages :** Settings → DCX Benchmark Luxe (dans l'admin WordPress)
+
+**Option WordPress :** `dcx_benchmark_luxe_bar_colors` (tableau de codes hex)
+
+**Couleurs par défaut :** `#1a2b4a`, `#4cb8c4`, `#5c6bc0`, `#e57373`, `#9e9e9e`
+
+Les couleurs sont passées à l'éditeur Gutenberg via `wp_localize_script` sous l'objet `dcxBarChartSettings.barColors`.
+
+---
+
 ## Documentation
 
 Le dossier `docs/` contient des notes techniques sur des patterns utilisés dans le projet :

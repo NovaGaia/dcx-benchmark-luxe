@@ -75,6 +75,11 @@ Gutenberg fournit déjà tout ce dont un bloc a besoin. Avant d'écrire un `<inp
 
 **Règle concrète :** si un contrôle existe dans `@wordpress/components` ou `@wordpress/block-editor`, l'utiliser tel quel. Ne pas wrapper, ne pas recréer, ne pas styler par-dessus avec du CSS custom pour simuler un comportement natif. Le bloc stat-card illustre ce principe : sidebar avec `TextControl` + `ToggleControl` + `FontSizePicker` + `ColorPalette`, canvas avec `RichText`.
 
+## Workflow Git
+
+- Toujours utiliser le skill `git-commit` pour créer des commits (jamais `git commit` directement)
+- Toujours mettre à jour le README avant de commit et push
+
 ## Contraintes importantes
 
 - Le dossier `build/` est gitignored et généré — ne jamais éditer manuellement
