@@ -1,53 +1,63 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
-  "name": "dcx-benchmark-luxe/stat-card",
+  "name": "dcx-benchmark-luxe/horizontal-bar-chart",
   "version": "1.0.0",
-  "title": "DCX Stat Card",
+  "title": "DCX Horizontal Bar Chart",
   "category": "common",
   "icon": "chart-bar",
-  "description": "Carte statistique avec chiffre principal, suffixe et libellé.",
-  "keywords": ["dcx", "stat", "kpi", "chiffre", "benchmark"],
+  "description": "Graphique de données en barres horizontales ou camembert, avec insight et modale.",
+  "keywords": ["dcx", "chart", "bar", "pie", "graphique", "benchmark"],
   "textdomain": "dcx-benchmark-luxe",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
+  "viewScript": "file:./view.js",
+  "render": "file:./render.php",
   "attributes": {
-    "number": {
+    "title": {
       "type": "string",
       "default": ""
     },
-    "suffix": {
+    "titleFontSize": {
       "type": "string",
       "default": ""
     },
-    "suffixPosition": {
-      "type": "string",
-      "default": "sup"
+    "items": {
+      "type": "array",
+      "default": [
+        { "label": "Entrée 1", "value": 60 },
+        { "label": "Entrée 2", "value": 40 }
+      ]
     },
-    "label": {
+    "chartType": {
+      "type": "string",
+      "default": "bar",
+      "enum": ["bar", "pie"]
+    },
+    "insightText": {
       "type": "string",
       "default": ""
     },
-    "accentColor": {
+    "modalTitle": {
       "type": "string",
       "default": ""
     },
-    "numberColor": {
+    "modalBody": {
       "type": "string",
       "default": ""
     },
-    "numberFontSize": {
+    "valueSuffix": {
       "type": "string",
-      "default": ""
+      "default": "%"
     },
-    "labelColor": {
-      "type": "string",
-      "default": ""
+    "xMax": {
+      "type": "number",
+      "default": 100
     },
-    "labelFontSize": {
-      "type": "string",
-      "default": ""
+    "useThemeButton": {
+      "type": "boolean",
+      "default": false
     }
   },
   "supports": {
@@ -57,11 +67,12 @@
       "background": false,
       "text": false
     },
-    "shadow": true,
     "spacing": {
+      "padding": true,
       "margin": true,
-      "__experimentalDefaultControls": { "margin": false }
+      "__experimentalDefaultControls": { "padding": true, "margin": false }
     },
+    "shadow": true,
     "__experimentalBorder": {
       "color": true,
       "radius": true,

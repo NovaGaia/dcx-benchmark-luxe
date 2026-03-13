@@ -22,6 +22,8 @@ define( 'DCX_BENCHMARK_LUXE_VERSION', '1.0.0' );
 define( 'DCX_BENCHMARK_LUXE_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'DCX_BENCHMARK_LUXE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
+require_once DCX_BENCHMARK_LUXE_PLUGIN_DIR . 'includes/settings.php';
+
 /**
  * Enregistre tous les blocs du plugin.
  * Chaque bloc est détecté automatiquement via son block.json.
