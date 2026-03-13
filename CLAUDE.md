@@ -59,6 +59,22 @@ Le PHP ne fait qu'une seule chose : parcourir `build/blocks/` et appeler `regist
 
 **Blocs dynamiques (rendu PHP) :** définir `"render": "file:./render.php"` dans `block.json` et retourner `null` dans `save.js`.
 
+## Philosophie de développement des blocs
+
+**Toujours utiliser les primitives WordPress — ne jamais en inventer.**
+
+Gutenberg fournit déjà tout ce dont un bloc a besoin. Avant d'écrire un `<input>`, un `<select>` ou un composant React custom, chercher d'abord si WordPress l'a déjà :
+
+- Édition inline dans le canvas → `RichText` / `RichText.Content` (`@wordpress/block-editor`)
+- Champ texte sidebar → `TextControl` (`@wordpress/components`)
+- Choix couleur → `ColorPalette` ou `PanelColorSettings` (`@wordpress/block-editor`)
+- Taille de police → `FontSizePicker` (`@wordpress/block-editor`)
+- Interrupteur on/off → `ToggleControl` (`@wordpress/components`)
+- Groupe de contrôles sidebar → `InspectorControls` + `PanelBody` (`@wordpress/block-editor` / `@wordpress/components`)
+- Props du bloc → `useBlockProps` / `useBlockProps.save` (`@wordpress/block-editor`)
+
+**Règle concrète :** si un contrôle existe dans `@wordpress/components` ou `@wordpress/block-editor`, l'utiliser tel quel. Ne pas wrapper, ne pas recréer, ne pas styler par-dessus avec du CSS custom pour simuler un comportement natif. Le bloc stat-card illustre ce principe : sidebar avec `TextControl` + `ToggleControl` + `FontSizePicker` + `ColorPalette`, canvas avec `RichText`.
+
 ## Contraintes importantes
 
 - Le dossier `build/` est gitignored et généré — ne jamais éditer manuellement

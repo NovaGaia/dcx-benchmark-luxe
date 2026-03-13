@@ -32,6 +32,22 @@
     "accentColor": {
       "type": "string",
       "default": ""
+    },
+    "numberColor": {
+      "type": "string",
+      "default": ""
+    },
+    "numberFontSize": {
+      "type": "string",
+      "default": ""
+    },
+    "labelColor": {
+      "type": "string",
+      "default": ""
+    },
+    "labelFontSize": {
+      "type": "string",
+      "default": ""
     }
   },
   "supports": {

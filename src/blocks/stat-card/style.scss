@@ -25,7 +25,6 @@
 
 	&__number {
 		margin: 0 0 1rem;
-		font-size: clamp(2.5rem, 5vw, 4rem);
 		font-weight: 700;
 		line-height: 1;
 		text-align: center;
@@ -39,7 +38,6 @@
 
 	&__label {
 		margin: 0;
-		font-size: clamp(0.7rem, 1.2vw, 0.85rem);
 		font-weight: 500;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
