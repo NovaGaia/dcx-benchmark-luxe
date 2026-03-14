@@ -52,9 +52,11 @@ Carte statistique affichant un chiffre clé avec suffixe et libellé.
 
 ---
 
-### `dcx-benchmark-luxe/horizontal-bar-chart`
+### `dcx-benchmark-luxe/charts`
 
-Graphique à barres horizontales avec configuration des couleurs via la page de réglages admin.
+Graphique de données (barres horizontales ou camembert) avec insight et modale. Les couleurs sont configurables via la page de réglages admin.
+
+**Fichiers :** `src/blocks/charts/`
 
 **Page de réglages :** Settings → DCX Benchmark Luxe (dans l'admin WordPress)
 
@@ -63,6 +65,32 @@ Graphique à barres horizontales avec configuration des couleurs via la page de 
 **Couleurs par défaut :** `#1a2b4a`, `#4cb8c4`, `#5c6bc0`, `#e57373`, `#9e9e9e`
 
 Les couleurs sont passées à l'éditeur Gutenberg via `wp_localize_script` sous l'objet `dcxBarChartSettings.barColors`.
+
+---
+
+### `dcx-benchmark-luxe/core-styles`
+
+Bloc interne (non visible dans l'inserter) qui enregistre des **Block Styles** pour les blocs core et les blocs custom du plugin.
+
+**Fichiers :** `src/blocks/core-styles/`
+
+**Styles disponibles :** `DCX Shadow`, `DCX Shadow Accent 1–6`
+
+Les styles DCX Shadow appliquent un effet de profondeur (box-shadow + hover translateY) et, pour les variantes accent, une bordure gauche colorée via les variables CSS du thème (`--wp--preset--color--accent-1` à `--wp--preset--color--accent-6`).
+
+**Blocs ciblés :**
+
+| Bloc | Nom technique |
+|---|---|
+| Groupe | `core/group` |
+| Colonnes | `core/columns` |
+| Colonne | `core/column` |
+| Pile | `core/stack` |
+| Grille | `core/grid` |
+| DCX Stat Card | `dcx-benchmark-luxe/stat-card` |
+| DCX Charts | `dcx-benchmark-luxe/charts` |
+
+Le CSS est chargé en éditeur et en front-end (enqueue global via `wp_enqueue_scripts`).
 
 ---
 

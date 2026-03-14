@@ -1,9 +1,9 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
-  "name": "dcx-benchmark-luxe/horizontal-bar-chart",
+  "name": "dcx-benchmark-luxe/charts",
   "version": "1.0.0",
-  "title": "DCX Horizontal Bar Chart",
+  "title": "DCX Charts",
   "category": "common",
   "icon": "chart-bar",
   "description": "Graphique de données en barres horizontales ou camembert, avec insight et modale.",

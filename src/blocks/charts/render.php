@@ -1,6 +1,6 @@
 <?php
 /**
- * Rendu serveur du bloc horizontal-bar-chart.
+ * Rendu serveur du bloc charts.
  *
  * @package DCX_Benchmark_Luxe
  *

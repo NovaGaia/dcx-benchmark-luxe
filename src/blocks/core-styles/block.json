@@ -1,0 +1,10 @@
+{
+  "apiVersion": 3,
+  "name": "dcx-benchmark-luxe/core-styles",
+  "title": "Core Styles",
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "supports": {
+    "inserter": false
+  }
+}
