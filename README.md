@@ -11,6 +11,16 @@ pnpm lint:js       # lint JavaScript/JSX
 pnpm lint:css      # lint SCSS/CSS
 ```
 
+## Formatage
+
+Le projet utilise **Prettier** via `@wordpress/prettier-config` (tabs, guillemets simples, style WordPress).
+
+La config est déclarée dans `.prettierrc.json` — elle est automatiquement reconnue par les IDE compatibles Prettier (format on save) et par `wp-scripts lint-js`.
+
+```bash
+pnpm lint:js --fix   # corrige automatiquement les erreurs de formatage
+```
+
 ## Blocs disponibles
 
 ### `dcx-benchmark-luxe/stat-card`

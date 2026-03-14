@@ -77,6 +77,7 @@ Gutenberg fournit déjà tout ce dont un bloc a besoin. Avant d'écrire un `<inp
 
 ## Workflow Git
 
+- **Ne jamais commit sans demande explicite de l'utilisateur**
 - Toujours utiliser le skill `git-commit` pour créer des commits (jamais `git commit` directement)
 - Toujours mettre à jour le README avant de commit et push
 
