@@ -7,7 +7,7 @@ import {
 	ColorPalette,
 	RichText,
 } from '@wordpress/block-editor';
-import { PanelBody, TextControl, ToggleControl } from '@wordpress/components';
+import { PanelBody, TextControl, ToggleControl, RangeControl } from '@wordpress/components';
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
@@ -16,6 +16,7 @@ export default function Edit( { attributes, setAttributes } ) {
 		suffixPosition,
 		label,
 		accentColor,
+		accentBorderWidth,
 		numberColor,
 		numberFontSize,
 		labelColor,
@@ -23,9 +24,10 @@ export default function Edit( { attributes, setAttributes } ) {
 	} = attributes;
 
 	const blockProps = useBlockProps( {
-		className: `dcx-stat-card${ accentColor ? ' has-accent' : '' }`,
+		className: 'dcx-stat-card',
 		style: {
 			'--dcx-stat-accent': accentColor || 'transparent',
+			'--dcx-stat-accent-width': `${ accentBorderWidth }px`,
 		},
 	} );
 
@@ -125,7 +127,17 @@ export default function Edit( { attributes, setAttributes } ) {
 							),
 						},
 					] }
-				/>
+				>
+					<RangeControl
+						label={ __( 'Épaisseur (px)', 'dcx-benchmark-luxe' ) }
+						value={ accentBorderWidth }
+						onChange={ ( value ) =>
+							setAttributes( { accentBorderWidth: value } )
+						}
+						min={ 1 }
+						max={ 20 }
+					/>
+				</PanelColorSettings>
 			</InspectorControls>
 
 			<div { ...blockProps }>

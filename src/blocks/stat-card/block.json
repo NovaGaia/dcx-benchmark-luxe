@@ -33,6 +33,10 @@
       "type": "string",
       "default": ""
     },
+    "accentBorderWidth": {
+      "type": "number",
+      "default": 4
+    },
     "numberColor": {
       "type": "string",
       "default": ""
@@ -63,12 +67,12 @@
       "__experimentalDefaultControls": { "margin": false }
     },
     "__experimentalBorder": {
-      "color": true,
+      "color": false,
       "radius": true,
       "width": true,
       "style": true,
       "__experimentalDefaultControls": {
-        "color": true,
+        "color": false,
         "radius": true,
         "width": true,
         "style": true

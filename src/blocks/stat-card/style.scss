@@ -5,22 +5,11 @@
 	align-items: center;
 	justify-content: center;
 	padding: 2rem 2.5rem;
-	overflow: hidden;
-	border-style: solid;
-
-	// Ligne supérieure colorée (remplace la bordure du haut)
-	&::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		height: 4px;
-		background-color: var(--dcx-stat-accent, transparent);
-	}
-
-	&.has-accent {
-		border-top-color: transparent !important;
+	// Priorité sur les styles de bordure globaux de WordPress
+	&.dcx-stat-card {
+		border-top-width: var(--dcx-stat-accent-width, 4px) !important;
+		border-top-style: solid !important;
+		border-top-color: var(--dcx-stat-accent, transparent) !important;
 	}
 
 	&__number {

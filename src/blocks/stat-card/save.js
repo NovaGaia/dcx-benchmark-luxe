@@ -7,6 +7,7 @@ export default function save( { attributes } ) {
 		suffixPosition,
 		label,
 		accentColor,
+		accentBorderWidth,
 		numberColor,
 		numberFontSize,
 		labelColor,
@@ -14,9 +15,10 @@ export default function save( { attributes } ) {
 	} = attributes;
 
 	const blockProps = useBlockProps.save( {
-		className: `dcx-stat-card${ accentColor ? ' has-accent' : '' }`,
+		className: 'dcx-stat-card',
 		style: {
 			'--dcx-stat-accent': accentColor || 'transparent',
+			'--dcx-stat-accent-width': `${ accentBorderWidth }px`,
 		},
 	} );
 

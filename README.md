@@ -27,26 +27,28 @@ Carte statistique affichant un chiffre clé avec suffixe et libellé.
 | `suffix`        | string | `""`    | Suffixe optionnel (ex. `"rd"`, `"%"`)       |
 | `suffixPosition`| string | `"sup"` | Position du suffixe : `"sup"` (exposant) ou `"sub"` (indice) |
 | `label`         | string | `""`    | Libellé descriptif (édition inline RichText dans le canvas) |
-| `accentColor`   | string | `""`    | Couleur de la barre d'accent supérieure (hex, rgb…) |
+| `accentColor`      | string | `""`    | Couleur de la bordure supérieure d'accent (hex, rgb…) |
+| `accentBorderWidth`| number | `4`     | Épaisseur de la bordure supérieure en px (RangeControl sidebar, 1–20) |
 | `numberColor`   | string | `""`    | Couleur du chiffre (ColorPalette sidebar)   |
 | `numberFontSize`| string | `""`    | Taille de police du chiffre (FontSizePicker sidebar) |
 | `labelColor`    | string | `""`    | Couleur du libellé (ColorPalette sidebar)   |
 | `labelFontSize` | string | `""`    | Taille de police du libellé (FontSizePicker sidebar) |
 
 **Supports WordPress :**
-- Bordure (`__experimentalBorder`) : couleur, rayon, largeur, style
+- Bordure (`__experimentalBorder`) : rayon, largeur, style (couleur désactivée — gérée par `accentColor`)
 - Alignement
 
 **Édition inline :** `number` et `label` s'éditent directement dans le canvas Gutenberg via `RichText` (sans formatage autorisé). `suffix` et `suffixPosition` restent dans la sidebar.
 
-**Comportement de la couleur d'accent :**
-Quand `accentColor` est défini, une barre colorée de 4 px apparaît en haut de la carte et la classe `has-accent` est ajoutée sur l'élément. Cette classe masque la bordure supérieure via `border-top-color: transparent !important` pour éviter le conflit visuel avec la barre.
+**Comportement de la bordure supérieure d'accent :**
+`accentColor` et `accentBorderWidth` contrôlent la bordure supérieure via des CSS custom properties injectées en inline style. Le support couleur natif de WordPress est désactivé (`"color": false`) pour éviter le conflit avec `.has-contrast-border-color !important`.
 
 **CSS custom properties exposées :**
 
-| Variable             | Valeur quand accent défini | Valeur par défaut |
-|----------------------|---------------------------|-------------------|
-| `--dcx-stat-accent`  | couleur choisie           | `transparent`     |
+| Variable                  | Description                          | Défaut        |
+|---------------------------|--------------------------------------|---------------|
+| `--dcx-stat-accent`       | Couleur de la bordure supérieure     | `transparent` |
+| `--dcx-stat-accent-width` | Épaisseur de la bordure supérieure   | `4px`         |
 
 ---
 
