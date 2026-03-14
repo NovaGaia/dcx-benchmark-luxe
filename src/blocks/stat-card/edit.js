@@ -7,7 +7,12 @@ import {
 	ColorPalette,
 	RichText,
 } from '@wordpress/block-editor';
-import { PanelBody, TextControl, ToggleControl, RangeControl } from '@wordpress/components';
+import {
+	PanelBody,
+	TextControl,
+	ToggleControl,
+	RangeControl,
+} from '@wordpress/components';
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {

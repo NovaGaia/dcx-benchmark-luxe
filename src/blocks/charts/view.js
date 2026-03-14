@@ -65,7 +65,9 @@ function initCharts() {
 							tooltip: {
 								callbacks: {
 									label: ( ctx ) =>
-										` ${ ctx.label }: ${ fmt( ctx.parsed ) }`,
+										` ${ ctx.label }: ${ fmt(
+											ctx.parsed
+										) }`,
 								},
 							},
 							datalabels: {
