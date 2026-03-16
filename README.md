@@ -132,6 +132,23 @@ La version est synchronisée automatiquement dans `package.json` **et** dans `dc
 
 Le plugin est compatible avec **[git-updater](https://github.com/afragen/git-updater)**. Une fois git-updater installé sur un site WordPress, il détecte les nouvelles releases GitHub et propose la mise à jour directement depuis le tableau de bord WordPress.
 
+**Headers git-updater dans `dcx-benchmark-luxe-plugin.php` :**
+
+```
+GitHub Plugin URI: NovaGaia/dcx-benchmark-luxe
+Primary Branch:    main
+Release Asset:     true
+```
+
+- `Primary Branch: main` — indique la branche par défaut (obligatoire si ce n'est pas `master`)
+- `Release Asset: true` — git-updater télécharge le ZIP attaché à la release GitHub plutôt que l'archive source
+
+**Nommage du ZIP de release :** le fichier doit suivre le pattern `$repo-*.zip`, soit `dcx-benchmark-luxe-{version}.zip` (nom du repo GitHub, pas du dossier plugin).
+
+**Première installation :** git-updater ne gère pas les fresh installs de manière fiable. Installer le plugin manuellement via FTP ou WP-CLI, puis git-updater prend le relais pour les mises à jour suivantes.
+
+**Repo privé :** nécessite une licence payante git-updater + un token GitHub (scope `repo`) configuré dans Settings → Git Updater → GitHub.
+
 ---
 
 ## Documentation
