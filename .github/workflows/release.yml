@@ -30,8 +30,17 @@ jobs:
           node-version: 24
           cache: pnpm
 
-      - name: Install dependencies
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer
+
+      - name: Install JS dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Install PHP dependencies
+        run: composer install --no-dev --optimize-autoloader
 
       - name: Create Release PR or Publish
         id: changesets
@@ -65,6 +74,8 @@ jobs:
           cp README.md "${PLUGIN_NAME}/"
           cp -r includes/ "${PLUGIN_NAME}/includes/"
           cp -r build/ "${PLUGIN_NAME}/build/"
+          cp composer.json "${PLUGIN_NAME}/"
+          cp -r vendor/ "${PLUGIN_NAME}/vendor/"
 
           zip -r "$ZIP_NAME" "${PLUGIN_NAME}/" -x "*.DS_Store"
 

@@ -10,9 +10,6 @@
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: dcx-benchmark-luxe
  * Domain Path: /languages
- * GitHub Plugin URI: NovaGaia/dcx-benchmark-luxe
- * Primary Branch:    main
- * Release Asset:     true
  * Requires WP:       6.3
  * Requires PHP:      8.0
  *
@@ -24,6 +21,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 define( 'DCX_BENCHMARK_LUXE_VERSION', '1.1.2' );
+
+// Mises à jour automatiques via GitHub Releases (plugin-update-checker).
+if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
+	require_once __DIR__ . '/vendor/autoload.php';
+
+	$update_checker = YahnisElsts\PluginUpdateChecker\v5\PucFactory::buildUpdateChecker(
+		'https://github.com/NovaGaia/dcx-benchmark-luxe',
+		__FILE__,
+		'dcx-benchmark-luxe-plugin'
+	);
+	$update_checker->getVcsApi()->enableReleaseAssets();
+}
 define( 'DCX_BENCHMARK_LUXE_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'DCX_BENCHMARK_LUXE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 

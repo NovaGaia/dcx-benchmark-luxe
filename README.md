@@ -128,26 +128,15 @@ Au push sur `main`, le workflow GitHub Actions (`release.yml`) tourne sur Node.j
 
 La version est synchronisée automatiquement dans `package.json` **et** dans `dcx-benchmark-luxe-plugin.php` (header `Version:` + constante `DCX_BENCHMARK_LUXE_VERSION`).
 
-### Mise à jour automatique via git-updater
+### Mise à jour automatique via plugin-update-checker
 
-Le plugin est compatible avec **[git-updater](https://github.com/afragen/git-updater)**. Une fois git-updater installé sur un site WordPress, il détecte les nouvelles releases GitHub et propose la mise à jour directement depuis le tableau de bord WordPress.
+Le plugin embarque **[plugin-update-checker](https://github.com/YahnisElsts/plugin-update-checker)** (PUC) — aucun plugin tiers à installer sur le site WordPress. PUC détecte les nouvelles releases GitHub et propose la mise à jour directement depuis le tableau de bord WordPress.
 
-**Headers git-updater dans `dcx-benchmark-luxe-plugin.php` :**
+**Aucune configuration requise côté WordPress.** PUC est initialisé automatiquement au chargement du plugin et pointe vers les releases GitHub publiques.
 
-```
-GitHub Plugin URI: NovaGaia/dcx-benchmark-luxe
-Primary Branch:    main
-Release Asset:     true
-```
+**Nommage du ZIP de release :** le fichier doit suivre le pattern `dcx-benchmark-luxe-{version}.zip` pour être détecté par PUC comme asset de release.
 
-- `Primary Branch: main` — indique la branche par défaut (obligatoire si ce n'est pas `master`)
-- `Release Asset: true` — git-updater télécharge le ZIP attaché à la release GitHub plutôt que l'archive source
-
-**Nommage du ZIP de release :** le fichier doit suivre le pattern `$repo-*.zip`, soit `dcx-benchmark-luxe-{version}.zip` (nom du repo GitHub, pas du dossier plugin).
-
-**Première installation :** git-updater ne gère pas les fresh installs de manière fiable. Installer le plugin manuellement via FTP ou WP-CLI, puis git-updater prend le relais pour les mises à jour suivantes.
-
-**Repo privé :** nécessite une licence payante git-updater + un token GitHub (scope `repo`) configuré dans Settings → Git Updater → GitHub.
+**Première installation :** installer le plugin manuellement via FTP ou WP-CLI. PUC prend le relais pour toutes les mises à jour suivantes.
 
 ---
 
