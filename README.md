@@ -89,9 +89,20 @@ Bloc interne (non visible dans l'inserter) qui enregistre des **Block Styles** p
 
 **Fichiers :** `src/blocks/core-styles/`
 
-**Styles disponibles :** `DCX Shadow`, `DCX Shadow Accent 1–6`
+**Styles disponibles :** `DCX Shadow`, et une variante par couleur de la palette du `theme.json`
 
-Les styles DCX Shadow appliquent un effet de profondeur (box-shadow + hover translateY) et, pour les variantes accent, une bordure gauche colorée via les variables CSS du thème (`--wp--preset--color--accent-1` à `--wp--preset--color--accent-6`).
+Les styles DCX Shadow appliquent un effet de profondeur (box-shadow + hover translateY) et, pour les variantes colorées, une bordure gauche via les variables CSS du thème (`--wp--preset--color--{slug}`).
+
+**Couleurs disponibles** (tirées du `theme.json` du thème) :
+
+| Slug | Nom |
+|------|-----|
+| `accent-1` … `accent-5` | Accents 1 à 5 |
+| `custom-secondary-1` … `custom-secondary-5` | Secondaires 1 à 5 |
+| `custom-digit-1`, `custom-digit-2` | Digit 1, Digit 2 |
+| `contrast` | Contraste |
+
+> Pour ajouter une couleur : l'ajouter dans `theme.json` du thème **et** dans la liste `$dcx-color-slugs` de `style.scss` + le tableau `boxStyles` de `index.js`, puis rebuilder.
 
 **Blocs ciblés :**
 

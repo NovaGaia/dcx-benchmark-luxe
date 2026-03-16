@@ -11,10 +11,26 @@
   }
 }
 
-// Variantes accent-1 à accent-6
-@for $i from 1 through 6 {
-  .is-style-dcx-box-accent-#{$i} {
-    border-left: 4px solid var(--wp--preset--color--accent-#{$i});
+// Variantes — slugs tirés du theme.json du thème
+$dcx-color-slugs: (
+  'accent-1',
+  'accent-2',
+  'accent-3',
+  'accent-4',
+  'accent-5',
+  'custom-secondary-1',
+  'custom-secondary-2',
+  'custom-secondary-3',
+  'custom-secondary-4',
+  'custom-secondary-5',
+  'custom-digit-1',
+  'custom-digit-2',
+  'contrast'
+);
+
+@each $slug in $dcx-color-slugs {
+  .is-style-dcx-box-#{$slug} {
+    border-left: 4px solid var(--wp--preset--color--#{$slug});
     border-left-width: 4px !important;
   }
 }
