@@ -44,22 +44,22 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Check version bump
-        id: version_check
-        run: |
-          COMMIT_MSG=$(git log -1 --format="%s")
-          if [[ "$COMMIT_MSG" == "chore: version packages" ]]; then
-            echo "bumped=true" >> $GITHUB_OUTPUT
-          fi
-
       - name: Create GitHub Release with ZIP
-        if: steps.version_check.outputs.bumped == 'true'
+        if: steps.changesets.outputs.hasChangesets == 'false'
         run: |
           VERSION=$(node -p "require('./package.json').version")
+
+          # Évite de recréer une release qui existe déjà (ex: push sans changeset)
+          if gh release view "v${VERSION}" 2>/dev/null; then
+            echo "Release v${VERSION} already exists, skipping."
+            exit 0
+          fi
+
+          pnpm build
+
           PLUGIN_NAME="dcx-benchmark-luxe-plugin"
           ZIP_NAME="dcx-benchmark-luxe-${VERSION}.zip"
 
-          # Créer un dossier racine au nom du plugin (requis par WordPress et git-updater)
           mkdir -p "${PLUGIN_NAME}"
           cp dcx-benchmark-luxe-plugin.php "${PLUGIN_NAME}/"
           cp README.md "${PLUGIN_NAME}/"
