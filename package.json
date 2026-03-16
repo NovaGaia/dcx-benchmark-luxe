@@ -1,6 +1,7 @@
 {
   "name": "dcx-benchmark-luxe-plugin",
   "version": "1.1.1",
+  "private": true,
   "description": "Blocs Gutenberg pour DCX Benchmark Luxe",
   "scripts": {
     "build": "wp-scripts build",
