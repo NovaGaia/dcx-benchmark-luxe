@@ -1,0 +1,77 @@
+.dcx-podium {
+	display: flex;
+	align-items: flex-end;
+	gap: 1rem;
+	justify-content: center;
+	padding-top: 1.5rem;
+
+	&__card {
+		background: #fff;
+		border-radius: 1rem;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+		padding: 1.5rem;
+		text-align: center;
+		flex: 1;
+		border-top: 4px solid transparent;
+
+		&--1st {
+			transform: translateY(-1.5rem);
+			box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+			padding: 2rem 1.5rem;
+			border-top-color: #f2c94c;
+		}
+
+		&--2nd {
+			border-top-color: #b0bec5;
+		}
+
+		&--3rd {
+			border-top-color: #cd7f32;
+		}
+	}
+
+	&__medal {
+		font-size: 2rem;
+		display: block;
+		margin-bottom: 0.25rem;
+	}
+
+	&__rank {
+		display: block;
+		font-size: 0.75rem;
+		color: #888;
+		margin-bottom: 0.5rem;
+	}
+
+	&__name {
+		display: block;
+		font-weight: 700;
+		margin-bottom: 0.5rem;
+	}
+
+	&__score {
+		display: block;
+		font-size: 2rem;
+		font-weight: 700;
+	}
+
+	&__description {
+		font-size: 0.875rem;
+		color: #666;
+		margin-top: 0.5rem;
+		margin-bottom: 0;
+	}
+}
+
+@media (max-width: 600px) {
+
+	.dcx-podium {
+		flex-direction: column;
+		align-items: stretch;
+
+		&__card--1st {
+			transform: none;
+			order: -1;
+		}
+	}
+}

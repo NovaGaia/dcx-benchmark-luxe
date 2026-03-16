@@ -109,6 +109,43 @@ Le CSS est chargé en éditeur et en front-end (enqueue global via `wp_enqueue_s
 
 ---
 
+### `dcx-benchmark-luxe/podium-cards`
+
+Podium à 3 cartes (1ère, 2ème, 3ème place) avec nom, score et description éditables en ligne.
+
+**Fichiers :** `src/blocks/podium-cards/`
+
+**Attributs :**
+
+| Attribut       | Type   | Défaut        | Description                  |
+|----------------|--------|---------------|------------------------------|
+| `name1`        | string | `"Maison A"`  | Nom — 1ère place             |
+| `score1`       | string | `"97/100"`    | Score — 1ère place           |
+| `description1` | string | `"Description…"` | Description — 1ère place  |
+| `name2`        | string | `"Maison B"`  | Nom — 2ème place             |
+| `score2`       | string | `"94/100"`    | Score — 2ème place           |
+| `description2` | string | `"Description…"` | Description — 2ème place  |
+| `name3`        | string | `"Maison C"`  | Nom — 3ème place             |
+| `score3`       | string | `"91/100"`    | Score — 3ème place           |
+| `description3` | string | `"Description…"` | Description — 3ème place  |
+
+**Supports WordPress :**
+- Spacing : `margin` et `padding` (controls désactivés par défaut dans la sidebar)
+
+**Édition inline :** tous les champs (nom, score, description) s'éditent directement dans le canvas via `RichText` (sans formatage autorisé).
+
+**Responsive :** en dessous de 600 px, les cartes s'empilent verticalement — la 1ère place remonte en tête de liste, le décalage `translateY` est supprimé.
+
+**Données fixes par rang :**
+
+| Rang | Médaille | Couleur accent |
+|------|----------|----------------|
+| 1ère | 🥇 | `#F2C94C` (or) |
+| 2ème | 🥈 | `#B0BEC5` (argent) |
+| 3ème | 🥉 | `#CD7F32` (bronze) |
+
+---
+
 ## Versioning et releases
 
 Le projet utilise **[Changesets](https://github.com/changesets/changesets)** pour gérer les versions et **GitHub Actions** pour publier automatiquement les releases.

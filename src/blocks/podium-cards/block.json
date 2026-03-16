@@ -1,0 +1,61 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "dcx-benchmark-luxe/podium-cards",
+  "version": "1.0.0",
+  "title": "DCX Podium Cards",
+  "category": "common",
+  "icon": "awards",
+  "description": "Podium à 3 cartes (1ère, 2ème, 3ème place) avec nom, score et description éditables.",
+  "keywords": ["dcx", "podium", "classement", "benchmark", "ranking"],
+  "textdomain": "dcx-benchmark-luxe",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "attributes": {
+    "name1": {
+      "type": "string",
+      "default": "Maison A"
+    },
+    "score1": {
+      "type": "string",
+      "default": "97/100"
+    },
+    "description1": {
+      "type": "string",
+      "default": "Description…"
+    },
+    "name2": {
+      "type": "string",
+      "default": "Maison B"
+    },
+    "score2": {
+      "type": "string",
+      "default": "94/100"
+    },
+    "description2": {
+      "type": "string",
+      "default": "Description…"
+    },
+    "name3": {
+      "type": "string",
+      "default": "Maison C"
+    },
+    "score3": {
+      "type": "string",
+      "default": "91/100"
+    },
+    "description3": {
+      "type": "string",
+      "default": "Description…"
+    }
+  },
+  "supports": {
+    "html": false,
+    "spacing": {
+      "margin": true,
+      "padding": true,
+      "__experimentalDefaultControls": { "margin": false, "padding": false }
+    }
+  }
+}
