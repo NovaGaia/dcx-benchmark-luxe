@@ -115,6 +115,7 @@ Les styles DCX Shadow appliquent un effet de profondeur (box-shadow + hover tran
 | Grille | `core/grid` |
 | DCX Stat Card | `dcx-benchmark-luxe/stat-card` |
 | DCX Charts | `dcx-benchmark-luxe/charts` |
+| DCX CTA | `dcx-benchmark-luxe/cta` |
 
 Le CSS est chargé en éditeur et en front-end (enqueue global via `wp_enqueue_scripts`).
 
@@ -154,6 +155,42 @@ Podium à 3 cartes (1ère, 2ème, 3ème place) avec nom, score et description é
 | 1ère | 🥇 | `#F2C94C` (or) |
 | 2ème | 🥈 | `#B0BEC5` (argent) |
 | 3ème | 🥉 | `#CD7F32` (bronze) |
+
+---
+
+### `dcx-benchmark-luxe/cta`
+
+Encart Call-to-Action centré avec titre, texte descriptif et bouton lien.
+
+**Fichiers :** `src/blocks/cta/`
+
+**Attributs :**
+
+| Attribut             | Type    | Défaut                             | Description |
+|----------------------|---------|------------------------------------|-------------|
+| `title`              | string  | `"Vous souhaitez aller plus loin ?"` | Titre (RichText inline, bold/italic autorisés) |
+| `description`        | string  | `"Recevez la fiche complète…"`     | Description (RichText inline, bold/italic autorisés) |
+| `buttonText`         | string  | `"En savoir plus"`                 | Texte du bouton (RichText inline) |
+| `buttonUrl`          | string  | `""`                               | URL de destination |
+| `buttonIcon`         | string  | `"✉️"`                              | Emoji/icône affiché avant le texte du bouton |
+| `linkTarget`         | boolean | `false`                            | Ouvrir dans un nouvel onglet (`target="_blank"`) |
+| `useThemeButton`     | boolean | `false`                            | Applique les classes `wp-element-button wp-block-button__link` pour utiliser le style bouton du thème |
+| `titleColor`         | string  | `""`                               | Couleur du titre (ColorPalette sidebar) |
+| `titleFontSize`      | string  | `""`                               | Taille de police du titre (FontSizePicker sidebar) |
+| `descriptionColor`   | string  | `""`                               | Couleur de la description (ColorPalette sidebar) |
+| `descriptionFontSize`| string  | `""`                               | Taille de police de la description (FontSizePicker sidebar) |
+
+**Supports WordPress :**
+- Couleur : fond, texte, dégradés
+- Spacing : `margin`, `padding`, `blockGap` (espacement entre les éléments via les presets du `theme.json`)
+- Ombre (`shadow`)
+- Bordure (`__experimentalBorder`) : couleur, rayon, largeur, style
+
+**Espacement entre éléments (`blockGap`) :**
+WordPress stocke la valeur en format interne `var:preset|spacing|60`. Le bloc la convertit en CSS valide (`var(--wp--preset--spacing--60)`) puis l'injecte comme `--wp--style--block-gap` sur le wrapper. Le SCSS lit `gap: var(--wp--style--block-gap, 1.5rem)`.
+
+**Bouton :**
+Par défaut, le bouton utilise un style pill custom (fond `#1b2b4b`, texte blanc, `border-radius: 999px`). En activant `useThemeButton`, les classes `wp-element-button wp-block-button__link` sont ajoutées et le thème applique ses propres styles de bouton.
 
 ---
 

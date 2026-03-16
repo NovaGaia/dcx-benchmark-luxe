@@ -1,0 +1,87 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "dcx-benchmark-luxe/cta",
+  "version": "1.0.0",
+  "title": "DCX CTA",
+  "category": "common",
+  "icon": "email",
+  "description": "Encart Call-to-Action centré avec titre, description et bouton lien.",
+  "keywords": ["dcx", "cta", "call to action", "bouton"],
+  "textdomain": "dcx-benchmark-luxe",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Vous souhaitez aller plus loin ?"
+    },
+    "description": {
+      "type": "string",
+      "default": "Recevez la fiche complète…"
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "En savoir plus"
+    },
+    "buttonUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "buttonIcon": {
+      "type": "string",
+      "default": "✉️"
+    },
+    "linkTarget": {
+      "type": "boolean",
+      "default": false
+    },
+    "useThemeButton": {
+      "type": "boolean",
+      "default": false
+    },
+    "titleColor": {
+      "type": "string",
+      "default": ""
+    },
+    "titleFontSize": {
+      "type": "string",
+      "default": ""
+    },
+    "descriptionColor": {
+      "type": "string",
+      "default": ""
+    },
+    "descriptionFontSize": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "html": false,
+    "color": {
+      "background": true,
+      "text": true,
+      "gradients": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true,
+      "blockGap": true
+    },
+    "shadow": true,
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "width": true,
+      "style": true,
+      "__experimentalDefaultControls": {
+        "color": false,
+        "radius": true,
+        "width": false,
+        "style": false
+      }
+    }
+  }
+}

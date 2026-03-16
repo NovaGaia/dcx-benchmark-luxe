@@ -28,4 +28,5 @@ domReady( () => {
 	registerBlockStyle( 'core/grid', boxStyles );
 	registerBlockStyle( 'dcx-benchmark-luxe/stat-card', boxStyles );
 	registerBlockStyle( 'dcx-benchmark-luxe/charts', boxStyles );
+	registerBlockStyle( 'dcx-benchmark-luxe/cta', boxStyles );
 } );
