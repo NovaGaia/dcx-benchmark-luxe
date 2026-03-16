@@ -47,7 +47,7 @@ jobs:
         run: |
           VERSION=$(node -p "require('./package.json').version")
           PLUGIN_NAME="dcx-benchmark-luxe-plugin"
-          ZIP_NAME="${PLUGIN_NAME}-${VERSION}.zip"
+          ZIP_NAME="dcx-benchmark-luxe-${VERSION}.zip"
 
           # Créer un dossier racine au nom du plugin (requis par WordPress et git-updater)
           mkdir -p "${PLUGIN_NAME}"

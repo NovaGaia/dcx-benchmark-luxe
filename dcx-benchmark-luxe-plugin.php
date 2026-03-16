@@ -11,7 +11,8 @@
  * Text Domain: dcx-benchmark-luxe
  * Domain Path: /languages
  * GitHub Plugin URI: NovaGaia/dcx-benchmark-luxe
- * GitHub Branch:     main
+ * Primary Branch:    main
+ * Release Asset:     true
  * Requires WP:       6.3
  * Requires PHP:      8.0
  *
