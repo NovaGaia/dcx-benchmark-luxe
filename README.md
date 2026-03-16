@@ -104,6 +104,36 @@ Le CSS est chargé en éditeur et en front-end (enqueue global via `wp_enqueue_s
 
 ---
 
+## Versioning et releases
+
+Le projet utilise **[Changesets](https://github.com/changesets/changesets)** pour gérer les versions et **GitHub Actions** pour publier automatiquement les releases.
+
+### Workflow
+
+#### 1. Décrire un changement
+
+```bash
+pnpm changeset
+# Choisir : patch | minor | major
+# Écrire une description du changement
+```
+
+Cela crée un fichier dans `.changeset/` à committer avec les modifications.
+
+#### 2. Publication automatique
+
+Au push sur `main`, le workflow GitHub Actions (`release.yml`) :
+- S'il y a des changesets en attente → ouvre/met à jour une PR **"Version Packages"**
+- À la fusion de cette PR → bumpe la version, build les assets, crée une **GitHub Release** avec le ZIP du plugin
+
+La version est synchronisée automatiquement dans `package.json` **et** dans `dcx-benchmark-luxe-plugin.php` (header `Version:` + constante `DCX_BENCHMARK_LUXE_VERSION`).
+
+### Mise à jour automatique via git-updater
+
+Le plugin est compatible avec **[git-updater](https://github.com/afragen/git-updater)**. Une fois git-updater installé sur un site WordPress, il détecte les nouvelles releases GitHub et propose la mise à jour directement depuis le tableau de bord WordPress.
+
+---
+
 ## Documentation
 
 Le dossier `docs/` contient des notes techniques sur des patterns utilisés dans le projet :

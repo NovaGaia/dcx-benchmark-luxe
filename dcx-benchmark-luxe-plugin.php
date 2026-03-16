@@ -1,15 +1,19 @@
 <?php
 /**
  * Plugin Name: DCX Benchmark Luxe
- * Plugin URI:  https://example.com/dcx-benchmark-luxe
+ * Plugin URI:  https://github.com/NovaGaia/dcx-benchmark-luxe
  * Description: Blocs Gutenberg pour DCX Benchmark Luxe.
- * Version:     1.0.0
+ * Version:     1.1.0
  * Author:      DCX
  * Author URI:  https://example.com
  * License:     GPL-2.0+
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: dcx-benchmark-luxe
  * Domain Path: /languages
+ * GitHub Plugin URI: NovaGaia/dcx-benchmark-luxe
+ * GitHub Branch:     main
+ * Requires WP:       6.3
+ * Requires PHP:      8.0
  *
  * @package DCX_Benchmark_Luxe
  */
@@ -18,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'DCX_BENCHMARK_LUXE_VERSION', '1.0.0' );
+define( 'DCX_BENCHMARK_LUXE_VERSION', '1.1.0' );
 define( 'DCX_BENCHMARK_LUXE_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'DCX_BENCHMARK_LUXE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
