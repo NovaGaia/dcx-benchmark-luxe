@@ -5,7 +5,12 @@ Plugin WordPress qui enregistre des blocs Gutenberg React pour les pages benchma
 ## Commandes
 
 ```bash
-pnpm start         # watch mode (développement, hot-reload)
+# Installation (première fois)
+composer install   # dépendances PHP (plugin-update-checker)
+pnpm install       # dépendances JS
+
+# Développement
+pnpm start         # watch mode (hot-reload)
 pnpm build         # build de production dans build/
 pnpm lint:js       # lint JavaScript/JSX
 pnpm lint:css      # lint SCSS/CSS
