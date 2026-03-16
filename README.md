@@ -122,7 +122,7 @@ Cela crée un fichier dans `.changeset/` à committer avec les modifications.
 
 #### 2. Publication automatique
 
-Au push sur `main`, le workflow GitHub Actions (`release.yml`) :
+Au push sur `main`, le workflow GitHub Actions (`release.yml`) tourne sur Node.js 24 :
 - S'il y a des changesets en attente → ouvre/met à jour une PR **"Version Packages"**
 - À la fusion de cette PR → bumpe la version, build les assets, crée une **GitHub Release** avec le ZIP du plugin
 
