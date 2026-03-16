@@ -1,4 +1,5 @@
 import { __ } from '@wordpress/i18n';
+import { useSelect } from '@wordpress/data';
 import {
 	useBlockProps,
 	InspectorControls,
@@ -6,6 +7,7 @@ import {
 	FontSizePicker,
 	ColorPalette,
 	RichText,
+	store as blockEditorStore,
 } from '@wordpress/block-editor';
 import {
 	PanelBody,
@@ -13,6 +15,33 @@ import {
 	ToggleControl,
 	RangeControl,
 } from '@wordpress/components';
+
+/**
+ * Si le hex correspond à une couleur du thème, retourne la CSS var WordPress.
+ * Sinon retourne la valeur telle quelle (couleur custom).
+ */
+function hexToVar( hex, colors ) {
+	if ( ! hex || ! colors ) return hex;
+	const match = colors.find(
+		( c ) => c.color?.toLowerCase() === hex.toLowerCase()
+	);
+	return match
+		? `var(--wp--preset--color--${ match.slug })`
+		: hex;
+}
+
+/**
+ * Si la valeur est une var() WordPress, résout vers le hex pour l'affichage
+ * dans le color picker (sélection du bon swatch).
+ */
+function resolveToHex( value, colors ) {
+	if ( ! value || ! colors ) return value;
+	const varMatch = value.match( /var\(--wp--preset--color--([^)]+)\)/ );
+	if ( varMatch ) {
+		return colors.find( ( c ) => c.slug === varMatch[ 1 ] )?.color ?? value;
+	}
+	return value;
+}
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
@@ -27,6 +56,10 @@ export default function Edit( { attributes, setAttributes } ) {
 		labelColor,
 		labelFontSize,
 	} = attributes;
+
+	const { colors } = useSelect( ( select ) => ( {
+		colors: select( blockEditorStore ).getSettings().colors,
+	} ) );
 
 	const blockProps = useBlockProps( {
 		className: 'dcx-stat-card',
@@ -92,9 +125,13 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 					<div style={ { marginTop: '16px' } } />
 					<ColorPalette
-						value={ numberColor }
+						value={ resolveToHex( numberColor, colors ) }
 						onChange={ ( value ) =>
-							setAttributes( { numberColor: value ?? '' } )
+							setAttributes( {
+								numberColor: value
+									? hexToVar( value, colors )
+									: '',
+							} )
 						}
 					/>
 				</PanelBody>
@@ -111,9 +148,13 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 					<div style={ { marginTop: '16px' } } />
 					<ColorPalette
-						value={ labelColor }
+						value={ resolveToHex( labelColor, colors ) }
 						onChange={ ( value ) =>
-							setAttributes( { labelColor: value ?? '' } )
+							setAttributes( {
+								labelColor: value
+									? hexToVar( value, colors )
+									: '',
+							} )
 						}
 					/>
 				</PanelBody>
@@ -123,9 +164,13 @@ export default function Edit( { attributes, setAttributes } ) {
 					title={ __( "Couleur d'accent", 'dcx-benchmark-luxe' ) }
 					colorSettings={ [
 						{
-							value: accentColor,
+							value: resolveToHex( accentColor, colors ),
 							onChange: ( value ) =>
-								setAttributes( { accentColor: value || '' } ),
+								setAttributes( {
+									accentColor: value
+										? hexToVar( value, colors )
+										: '',
+								} ),
 							label: __(
 								'Ligne supérieure',
 								'dcx-benchmark-luxe'

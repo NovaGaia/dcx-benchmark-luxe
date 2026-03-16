@@ -37,11 +37,11 @@ Carte statistique affichant un chiffre clé avec suffixe et libellé.
 | `suffix`        | string | `""`    | Suffixe optionnel (ex. `"rd"`, `"%"`)       |
 | `suffixPosition`| string | `"sup"` | Position du suffixe : `"sup"` (exposant) ou `"sub"` (indice) |
 | `label`         | string | `""`    | Libellé descriptif (édition inline RichText dans le canvas) |
-| `accentColor`      | string | `""`    | Couleur de la bordure supérieure d'accent (hex, rgb…) |
+| `accentColor`      | string | `""`    | Couleur de la bordure supérieure d'accent — `var(--wp--preset--color--{slug})` si couleur du thème, sinon hex |
 | `accentBorderWidth`| number | `4`     | Épaisseur de la bordure supérieure en px (RangeControl sidebar, 1–20) |
-| `numberColor`   | string | `""`    | Couleur du chiffre (ColorPalette sidebar)   |
+| `numberColor`   | string | `""`    | Couleur du chiffre — `var(--wp--preset--color--{slug})` si couleur du thème, sinon hex |
 | `numberFontSize`| string | `""`    | Taille de police du chiffre (FontSizePicker sidebar) |
-| `labelColor`    | string | `""`    | Couleur du libellé (ColorPalette sidebar)   |
+| `labelColor`    | string | `""`    | Couleur du libellé — `var(--wp--preset--color--{slug})` si couleur du thème, sinon hex |
 | `labelFontSize` | string | `""`    | Taille de police du libellé (FontSizePicker sidebar) |
 
 **Supports WordPress :**
