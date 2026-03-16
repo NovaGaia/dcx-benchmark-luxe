@@ -49,13 +49,14 @@ jobs:
           PLUGIN_NAME="dcx-benchmark-luxe-plugin"
           ZIP_NAME="${PLUGIN_NAME}-${VERSION}.zip"
 
-          # Créer le ZIP du plugin (uniquement les fichiers nécessaires)
-          zip -r "$ZIP_NAME" \
-            dcx-benchmark-luxe-plugin.php \
-            includes/ \
-            build/ \
-            README.md \
-            -x "*.DS_Store"
+          # Créer un dossier racine au nom du plugin (requis par WordPress et git-updater)
+          mkdir -p "${PLUGIN_NAME}"
+          cp dcx-benchmark-luxe-plugin.php "${PLUGIN_NAME}/"
+          cp README.md "${PLUGIN_NAME}/"
+          cp -r includes/ "${PLUGIN_NAME}/includes/"
+          cp -r build/ "${PLUGIN_NAME}/build/"
+
+          zip -r "$ZIP_NAME" "${PLUGIN_NAME}/" -x "*.DS_Store"
 
           gh release create "v${VERSION}" \
             --title "v${VERSION}" \
