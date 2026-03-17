@@ -336,7 +336,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						<div className="wp-block-button">
 							<RichText
 								tagName="span"
-								className="wp-block-button__link wp-element-button"
+								className="wp-block-button__link wp-element-button dcx-bar-chart__insight-btn"
 								allowedFormats={ [] }
 								value={ insightText }
 								onChange={ ( value ) =>

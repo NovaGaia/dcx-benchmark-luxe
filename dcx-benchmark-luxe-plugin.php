@@ -71,3 +71,14 @@ function dcx_benchmark_luxe_enqueue_global_styles() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'dcx_benchmark_luxe_enqueue_global_styles' );
+
+/**
+ * Charge les styles core/button à priorité 1, AVANT wp_add_global_styles_for_blocks() (priorité 10).
+ * WordPress n'injecte le CSS de bloc (couleur, rayon, ombre depuis theme.json) que si
+ * wp-block-button est déjà dans la queue au moment du check dans wp_add_global_styles_for_blocks().
+ */
+function dcx_benchmark_luxe_enqueue_button_styles() {
+	wp_enqueue_style( 'wp-block-button' );
+	wp_enqueue_style( 'wp-block-buttons' );
+}
+add_action( 'wp_enqueue_scripts', 'dcx_benchmark_luxe_enqueue_button_styles', 1 );

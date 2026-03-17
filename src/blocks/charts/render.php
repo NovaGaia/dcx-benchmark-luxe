@@ -89,7 +89,7 @@ $wrapper_attributes = get_block_wrapper_attributes( [ 'class' => 'dcx-bar-chart'
 			<div class="wp-block-button">
 				<button
 					type="button"
-					class="wp-block-button__link wp-element-button"
+					class="wp-block-button__link wp-element-button dcx-bar-chart__insight-btn"
 					aria-controls="<?php echo esc_attr( $modal_id ); ?>"
 					aria-expanded="false"
 				>
