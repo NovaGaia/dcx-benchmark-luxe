@@ -19,23 +19,29 @@ import {
 /**
  * Si le hex correspond à une couleur du thème, retourne la CSS var WordPress.
  * Sinon retourne la valeur telle quelle (couleur custom).
+ * @param hex
+ * @param colors
  */
 function hexToVar( hex, colors ) {
-	if ( ! hex || ! colors ) return hex;
+	if ( ! hex || ! colors ) {
+		return hex;
+	}
 	const match = colors.find(
 		( c ) => c.color?.toLowerCase() === hex.toLowerCase()
 	);
-	return match
-		? `var(--wp--preset--color--${ match.slug })`
-		: hex;
+	return match ? `var(--wp--preset--color--${ match.slug })` : hex;
 }
 
 /**
  * Si la valeur est une var() WordPress, résout vers le hex pour l'affichage
  * dans le color picker (sélection du bon swatch).
+ * @param value
+ * @param colors
  */
 function resolveToHex( value, colors ) {
-	if ( ! value || ! colors ) return value;
+	if ( ! value || ! colors ) {
+		return value;
+	}
 	const varMatch = value.match( /var\(--wp--preset--color--([^)]+)\)/ );
 	if ( varMatch ) {
 		return colors.find( ( c ) => c.slug === varMatch[ 1 ] )?.color ?? value;
