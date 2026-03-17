@@ -1,5 +1,26 @@
 # dcx-benchmark-luxe-plugin
 
+## 1.3.1
+
+### Patch Changes
+
+-   a2c27b2: refactor(charts): migrer le bouton insight vers la structure wp-block-buttons
+
+    Suppression des styles custom `&__insight-btn`. Le bouton insight utilise
+    désormais la même structure native `wp-block-buttons > wp-block-button >
+wp-block-button__link` que les blocs button WordPress.
+
+-   bd14295: refactor(charts): supprimer l'attribut `modalTitle` redondant
+
+    Le texte du bouton insight (`insightText`) est désormais utilisé directement comme titre de la modale — les deux champs étant toujours identiques, `modalTitle` est supprimé.
+
+-   c8c3fbe: refactor(cta): supprimer useThemeButton, bouton toujours en style thème
+
+    Le toggle "Style bouton du thème" est supprimé — le bouton CTA utilise
+    désormais systématiquement `wp-block-button__link wp-element-button`
+    encapsulé dans la structure native `wp-block-buttons`. Les blocs
+    existants sont migrés automatiquement via `deprecated.js` (v1 et v2).
+
 ## 1.3.0
 
 ### Minor Changes
