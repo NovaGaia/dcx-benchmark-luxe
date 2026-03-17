@@ -174,7 +174,6 @@ Encart Call-to-Action centré avec titre, texte descriptif et bouton lien.
 | `buttonUrl`          | string  | `""`                               | URL de destination |
 | `buttonIcon`         | string  | `"✉️"`                              | Emoji/icône affiché avant le texte du bouton |
 | `linkTarget`         | boolean | `false`                            | Ouvrir dans un nouvel onglet (`target="_blank"`) |
-| `useThemeButton`     | boolean | `false`                            | Applique les classes `wp-element-button wp-block-button__link` pour utiliser le style bouton du thème |
 | `titleColor`         | string  | `""`                               | Couleur du titre (ColorPalette sidebar) |
 | `titleFontSize`      | string  | `""`                               | Taille de police du titre (FontSizePicker sidebar) |
 | `descriptionColor`   | string  | `""`                               | Couleur de la description (ColorPalette sidebar) |
@@ -190,7 +189,7 @@ Encart Call-to-Action centré avec titre, texte descriptif et bouton lien.
 WordPress stocke la valeur en format interne `var:preset|spacing|60`. Le bloc la convertit en CSS valide (`var(--wp--preset--spacing--60)`) puis l'injecte comme `--wp--style--block-gap` sur le wrapper. Le SCSS lit `gap: var(--wp--style--block-gap, 1.5rem)`.
 
 **Bouton :**
-Par défaut, le bouton utilise un style pill custom (fond `#1b2b4b`, texte blanc, `border-radius: 999px`). En activant `useThemeButton`, les classes `wp-element-button wp-block-button__link` sont ajoutées et le thème applique ses propres styles de bouton.
+Le bouton utilise toujours les classes `wp-block-button__link wp-element-button`, encapsulées dans la structure native `wp-block-buttons`. Le style est donc entièrement piloté par le thème.
 
 ---
 

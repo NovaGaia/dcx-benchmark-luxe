@@ -8,7 +8,6 @@ export default function save( { attributes } ) {
 		buttonUrl,
 		buttonIcon,
 		linkTarget,
-		useThemeButton,
 		titleColor,
 		titleFontSize,
 		descriptionColor,
@@ -34,10 +33,6 @@ export default function save( { attributes } ) {
 	const linkProps = linkTarget
 		? { target: '_blank', rel: 'noreferrer noopener' }
 		: {};
-
-	const btnClass =
-		'dcx-cta__button' +
-		( useThemeButton ? ' wp-element-button wp-block-button__link' : '' );
 
 	const rawGap = attributes.style?.spacing?.blockGap;
 	const gapValue = rawGap
@@ -68,14 +63,24 @@ export default function save( { attributes } ) {
 				value={ description }
 				{ ...( descriptionStyle ? { style: descriptionStyle } : {} ) }
 			/>
-			<a href={ buttonUrl } className={ btnClass } { ...linkProps }>
-				<span className="dcx-cta__button-icon">{ buttonIcon }</span>
-				<RichText.Content
-					tagName="span"
-					className="dcx-cta__button-text"
-					value={ buttonText }
-				/>
-			</a>
+			<div className="wp-block-buttons is-content-justification-center is-layout-flex">
+				<div className="wp-block-button">
+					<a
+						href={ buttonUrl }
+						className="wp-block-button__link wp-element-button"
+						{ ...linkProps }
+					>
+						<span className="dcx-cta__button-icon">
+							{ buttonIcon }
+						</span>
+						<RichText.Content
+							tagName="span"
+							className="dcx-cta__button-text"
+							value={ buttonText }
+						/>
+					</a>
+				</div>
+			</div>
 		</div>
 	);
 }

@@ -39,7 +39,6 @@ export default function Edit( { attributes, setAttributes } ) {
 		buttonUrl,
 		buttonIcon,
 		linkTarget,
-		useThemeButton,
 		titleColor,
 		titleFontSize,
 		descriptionColor,
@@ -61,10 +60,6 @@ export default function Edit( { attributes, setAttributes } ) {
 		className: 'dcx-cta',
 		style: gapValue ? { '--wp--style--block-gap': gapValue } : undefined,
 	} );
-
-	const btnClass =
-		'dcx-cta__button' +
-		( useThemeButton ? ' wp-element-button wp-block-button__link' : '' );
 
 	return (
 		<>
@@ -139,20 +134,6 @@ export default function Edit( { attributes, setAttributes } ) {
 							setAttributes( { linkTarget: value } )
 						}
 					/>
-					<ToggleControl
-						label={ __(
-							'Style bouton du thème',
-							'dcx-benchmark-luxe'
-						) }
-						help={ __(
-							'Utilise les styles de bouton définis dans le thème.',
-							'dcx-benchmark-luxe'
-						) }
-						checked={ useThemeButton }
-						onChange={ ( value ) =>
-							setAttributes( { useThemeButton: value } )
-						}
-					/>
 					<TextControl
 						label={ __( 'Icône / Emoji', 'dcx-benchmark-luxe' ) }
 						value={ buttonIcon }
@@ -196,28 +177,34 @@ export default function Edit( { attributes, setAttributes } ) {
 						fontSize: descriptionFontSize || undefined,
 					} }
 				/>
-				{ /* eslint-disable-next-line jsx-a11y/anchor-is-valid */ }
-				<a
-					className={ btnClass }
-					href={ buttonUrl || '#' }
-					style={ { pointerEvents: 'none' } }
-					tabIndex={ -1 }
-				>
-					<span className="dcx-cta__button-icon">{ buttonIcon }</span>
-					<RichText
-						tagName="span"
-						className="dcx-cta__button-text"
-						allowedFormats={ [] }
-						value={ buttonText }
-						onChange={ ( value ) =>
-							setAttributes( { buttonText: value } )
-						}
-						placeholder={ __(
-							'En savoir plus',
-							'dcx-benchmark-luxe'
-						) }
-					/>
-				</a>
+				<div className="wp-block-buttons is-content-justification-center is-layout-flex">
+					<div className="wp-block-button">
+						{ /* eslint-disable-next-line jsx-a11y/anchor-is-valid */ }
+						<a
+							className="wp-block-button__link wp-element-button"
+							href={ buttonUrl || '#' }
+							style={ { pointerEvents: 'none' } }
+							tabIndex={ -1 }
+						>
+							<span className="dcx-cta__button-icon">
+								{ buttonIcon }
+							</span>
+							<RichText
+								tagName="span"
+								className="dcx-cta__button-text"
+								allowedFormats={ [] }
+								value={ buttonText }
+								onChange={ ( value ) =>
+									setAttributes( { buttonText: value } )
+								}
+								placeholder={ __(
+									'En savoir plus',
+									'dcx-benchmark-luxe'
+								) }
+							/>
+						</a>
+					</div>
+				</div>
 			</div>
 		</>
 	);

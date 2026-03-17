@@ -25,43 +25,10 @@
 		margin-bottom: 0;
 	}
 
-	&__button {
-		// Quand le thème applique ses styles de bouton (wp-element-button)
-		&.wp-element-button,
-		&.wp-block-button__link {
-			width: auto;
-			align-self: center;
-			display: inline-flex;
-			align-items: center;
-			gap: 10px;
-		}
-
-		// Fallback si les classes thème sont absentes
-		&:not(.wp-element-button):not(.wp-block-button__link) {
-			display: inline-flex;
-			align-items: center;
-			gap: 10px;
-			background: #1b2b4b;
-			padding: 14px 28px;
-			border-radius: 999px;
-			font-weight: 600;
-			font-size: 0.9375rem;
-			transition: opacity 0.2s;
-
-			&,
-			&:link,
-			&:visited {
-				color: #fff;
-				text-decoration: none;
-			}
-
-			&:hover,
-			&:focus {
-				color: #fff;
-				opacity: 0.85;
-				text-decoration: none;
-			}
-		}
+	.wp-block-button__link {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
 	}
 
 	&__button-icon {

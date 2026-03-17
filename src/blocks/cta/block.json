@@ -37,10 +37,6 @@
       "type": "boolean",
       "default": false
     },
-    "useThemeButton": {
-      "type": "boolean",
-      "default": false
-    },
     "titleColor": {
       "type": "string",
       "default": ""
