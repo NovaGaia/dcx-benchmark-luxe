@@ -25,13 +25,9 @@ $title_font     = isset( $attributes['titleFontSize'] ) ? $attributes['titleFont
 $items          = isset( $attributes['items'] ) && is_array( $attributes['items'] ) ? $attributes['items'] : [];
 $chart_type     = isset( $attributes['chartType'] ) && 'pie' === $attributes['chartType'] ? 'pie' : 'bar';
 $insight_text   = isset( $attributes['insightText'] ) ? $attributes['insightText'] : '';
-$modal_title    = isset( $attributes['modalTitle'] ) ? $attributes['modalTitle'] : '';
 $modal_body     = isset( $attributes['modalBody'] ) ? $attributes['modalBody'] : '';
 $value_suffix   = isset( $attributes['valueSuffix'] ) ? $attributes['valueSuffix'] : '%';
 $x_max          = isset( $attributes['xMax'] ) ? intval( $attributes['xMax'] ) : 100;
-$use_theme_btn  = ! empty( $attributes['useThemeButton'] );
-$btn_class      = 'dcx-bar-chart__insight-btn' . ( $use_theme_btn ? ' wp-element-button wp-block-button__link' : '' );
-
 $labels = [];
 $values = [];
 $item_colors = [];
@@ -89,14 +85,18 @@ $wrapper_attributes = get_block_wrapper_attributes( [ 'class' => 'dcx-bar-chart'
 
 	<?php if ( $insight_text ) : ?>
 	<div class="dcx-bar-chart__insight">
-		<button
-			type="button"
-			class="<?php echo esc_attr( $btn_class ); ?>"
-			aria-controls="<?php echo esc_attr( $modal_id ); ?>"
-			aria-expanded="false"
-		>
-			<?php echo wp_kses_post( $insight_text ); ?>
-		</button>
+		<div class="wp-block-buttons is-content-justification-center is-layout-flex">
+			<div class="wp-block-button">
+				<button
+					type="button"
+					class="wp-block-button__link wp-element-button"
+					aria-controls="<?php echo esc_attr( $modal_id ); ?>"
+					aria-expanded="false"
+				>
+					<?php echo wp_kses_post( $insight_text ); ?>
+				</button>
+			</div>
+		</div>
 	</div>
 	<?php endif; ?>
 
@@ -116,11 +116,9 @@ $wrapper_attributes = get_block_wrapper_attributes( [ 'class' => 'dcx-bar-chart'
 				class="dcx-bar-chart__modal-close"
 				aria-label="<?php esc_attr_e( 'Fermer la modale', 'dcx-benchmark-luxe' ); ?>"
 			>×</button>
-			<?php if ( $modal_title ) : ?>
 			<p id="<?php echo esc_attr( $modal_id ); ?>-title" class="dcx-bar-chart__modal-title">
-				<?php echo esc_html( $modal_title ); ?>
+				<?php echo wp_kses_post( $insight_text ); ?>
 			</p>
-			<?php endif; ?>
 			<?php if ( $modal_body ) : ?>
 			<div class="dcx-bar-chart__modal-body">
 				<?php echo wp_kses_post( $modal_body ); ?>

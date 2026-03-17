@@ -69,7 +69,7 @@ Carte statistique affichant un chiffre clé avec suffixe et libellé.
 
 ### `dcx-benchmark-luxe/charts`
 
-Graphique de données (barres horizontales ou camembert) avec insight et modale. Les couleurs sont configurables via la page de réglages admin.
+Graphique de données (barres horizontales ou camembert) avec bouton insight ouvrant une modale. Les couleurs sont configurables via la page de réglages admin.
 
 **Fichiers :** `src/blocks/charts/`
 

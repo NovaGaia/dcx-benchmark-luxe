@@ -13,7 +13,6 @@ import {
 	PanelBody,
 	SelectControl,
 	TextControl,
-	ToggleControl,
 } from '@wordpress/components';
 import {
 	FontSizePicker,
@@ -59,11 +58,9 @@ export default function Edit( { attributes, setAttributes } ) {
 		items,
 		chartType,
 		insightText,
-		modalTitle,
 		modalBody,
 		valueSuffix,
 		xMax,
-		useThemeButton,
 	} = attributes;
 
 	const blockProps = useBlockProps( { className: 'dcx-bar-chart' } );
@@ -189,21 +186,6 @@ export default function Edit( { attributes, setAttributes } ) {
 						] }
 						onChange={ ( value ) =>
 							setAttributes( { chartType: value } )
-						}
-					/>
-				</PanelBody>
-				<PanelBody
-					title={ __( 'Bouton insight', 'dcx-benchmark-luxe' ) }
-					initialOpen={ false }
-				>
-					<ToggleControl
-						label={ __(
-							'Utiliser le style du thème',
-							'dcx-benchmark-luxe'
-						) }
-						checked={ useThemeButton }
-						onChange={ ( value ) =>
-							setAttributes( { useThemeButton: value } )
 						}
 					/>
 				</PanelBody>
@@ -350,42 +332,34 @@ export default function Edit( { attributes, setAttributes } ) {
 				</div>
 
 				<div className="dcx-bar-chart__insight">
-					<RichText
-						tagName="span"
-						className={ `dcx-bar-chart__insight-btn${
-							useThemeButton
-								? ' wp-element-button wp-block-button__link'
-								: ''
-						}` }
-						allowedFormats={ [] }
-						value={ insightText }
-						onChange={ ( value ) =>
-							setAttributes( { insightText: value } )
-						}
-						placeholder={ __(
-							'Texte insight…',
-							'dcx-benchmark-luxe'
-						) }
-					/>
+					<div className="wp-block-buttons is-content-justification-center is-layout-flex">
+						<div className="wp-block-button">
+							<RichText
+								tagName="span"
+								className="wp-block-button__link wp-element-button"
+								allowedFormats={ [] }
+								value={ insightText }
+								onChange={ ( value ) =>
+									setAttributes( { insightText: value } )
+								}
+								placeholder={ __(
+									'Texte insight…',
+									'dcx-benchmark-luxe'
+								) }
+							/>
+						</div>
+					</div>
 				</div>
 
 				<div className="dcx-bar-chart__modal-preview">
 					<p className="dcx-bar-chart__modal-preview-label">
 						{ __( 'Aperçu modale', 'dcx-benchmark-luxe' ) }
 					</p>
-					<RichText
-						tagName="p"
-						className="dcx-bar-chart__modal-title"
-						allowedFormats={ [] }
-						value={ modalTitle }
-						onChange={ ( value ) =>
-							setAttributes( { modalTitle: value } )
-						}
-						placeholder={ __(
-							'Titre de la modale',
-							'dcx-benchmark-luxe'
-						) }
-					/>
+					{ insightText && (
+						<p className="dcx-bar-chart__modal-title">
+							{ insightText }
+						</p>
+					) }
 					<RichText
 						tagName="div"
 						className="dcx-bar-chart__modal-body"

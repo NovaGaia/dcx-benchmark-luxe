@@ -39,10 +39,6 @@
       "type": "string",
       "default": ""
     },
-    "modalTitle": {
-      "type": "string",
-      "default": ""
-    },
     "modalBody": {
       "type": "string",
       "default": ""
@@ -54,10 +50,6 @@
     "xMax": {
       "type": "number",
       "default": 100
-    },
-    "useThemeButton": {
-      "type": "boolean",
-      "default": false
     }
   },
   "supports": {
