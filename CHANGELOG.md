@@ -1,14 +1,25 @@
 # dcx-benchmark-luxe-plugin
 
+## 1.3.2
+
+### Patch Changes
+
+-   99c18ba: fix(charts, cta): corriger le chargement des styles du bouton WordPress et l'ouverture du modal insight
+
+    -   Enqueue `wp-block-button` et `wp-block-buttons` à priorité 1 (avant `wp_add_global_styles_for_blocks()` qui tourne à priorité 10), afin que WordPress injecte correctement le CSS de bloc issu du `theme.json` (couleur teal `accent-1`, `border-radius: 22px`, `box-shadow`). Sans cette priorité, le check `in_array( $block_handle, $wp_styles->queue )` échoue et le CSS n'est pas généré.
+    -   Ajoute la classe `dcx-bar-chart__insight-btn` au bouton insight dans `render.php` (front-end) et `edit.js` (éditeur) : `view.js` utilisait ce sélecteur pour initialiser le modal, mais la classe était absente — le modal ne s'ouvrait donc jamais.
+    -   Supprime la fonction `dcx_benchmark_luxe_add_button_block_global_styles()` devenue inutile (approche via `WP_Theme_JSON_Resolver::get_stylesheet()` contournée par la solution priorité 1).
+
 ## 1.3.1
 
 ### Patch Changes
 
 -   a2c27b2: refactor(charts): migrer le bouton insight vers la structure wp-block-buttons
 
-    Suppression des styles custom `&__insight-btn`. Le bouton insight utilise
-    désormais la même structure native `wp-block-buttons > wp-block-button >
-wp-block-button__link` que les blocs button WordPress.
+        Suppression des styles custom `&__insight-btn`. Le bouton insight utilise
+        désormais la même structure native `wp-block-buttons > wp-block-button >
+
+    wp-block-button\_\_link` que les blocs button WordPress.
 
 -   bd14295: refactor(charts): supprimer l'attribut `modalTitle` redondant
 
