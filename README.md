@@ -158,6 +158,49 @@ Podium à 3 cartes (1ère, 2ème, 3ème place) avec nom, score et description é
 
 ---
 
+### `dcx-benchmark-luxe/blurred-section`
+
+Conteneur masquant son contenu avec un effet de flou progressif et un overlay CTA ouvrant une modal HubSpot. Idéal pour du contenu "paywall" accessible après soumission de formulaire.
+
+**Fichiers :** `src/blocks/blurred-section/`
+
+**Attributs :**
+
+| Attribut             | Type    | Défaut                                          | Description |
+|----------------------|---------|-------------------------------------------------|-------------|
+| `overlayTitle`       | string  | `"Envie d'en savoir plus ?"`                    | Titre de l'overlay (RichText inline, bold/italic autorisés) |
+| `overlayDescription` | string  | `"Accédez au contenu complet en remplissant le formulaire."` | Description de l'overlay (RichText inline) |
+| `buttonText`         | string  | `"Accéder au contenu"`                          | Texte du bouton CTA (RichText inline) |
+| `buttonIcon`         | string  | `"🔓"`                                          | Emoji/icône du bouton |
+| `iframeUrl`          | string  | `""`                                            | URL du formulaire HubSpot affiché dans la modal |
+| `overlayHeight`      | number  | `50`                                            | Hauteur de l'overlay en % (20–80) |
+| `gradientColor`      | string  | `"#ffffff"`                                     | Couleur de fond du fondu (ColorPalette sidebar) |
+| `blurIntensity`      | number  | `6`                                             | Intensité du flou en px (2–12) |
+| `minHeight`          | string  | `"300px"`                                       | Hauteur minimale du bloc (ex. `300px`, `20rem`) |
+| `maxHeight`          | string  | `"500px"`                                       | Hauteur maximale — coupe le contenu qui dépasse |
+| `showBlurPreview`    | boolean | `false`                                         | Active la prévisualisation du flou dans l'éditeur |
+
+**Supports WordPress :**
+- Alignement : `wide`, `full`
+- Spacing : `margin`, `padding`
+
+**Fonctionnement :**
+- En éditeur : un bandeau avertit que le contenu sera flouté. L'`InnerBlocks` permet d'éditer librement le contenu ; l'overlay CTA s'affiche en flux sous le contenu. Le `ToggleControl` "Prévisualiser le flou" applique le rendu front-end directement dans le canvas.
+- En front-end : le contenu est masqué par un `backdrop-filter: blur()` progressif (gradient mask). L'overlay CTA s'affiche en superposition. Le bouton ouvre une modal contenant l'iframe HubSpot.
+
+**Modal HubSpot :**
+La modal est gérée par `view.js` (déplacée vers `document.body` pour échapper aux stacking contexts). Elle s'ouvre via le bouton CTA, se ferme via la croix, le fond semi-transparent, ou la touche `Escape`. Le focus est géré pour l'accessibilité.
+
+**CSS appliqués en inline (save.js) :**
+
+| Style | Description |
+|-------|-------------|
+| `backdropFilter` / `WebkitBackdropFilter` | Flou du contenu |
+| `maskImage` / `WebkitMaskImage` | Gradient `transparent → black` contrôlant la zone floutée |
+| `background` (overlay) | Fondu `gradientColor → transparent` |
+
+---
+
 ### `dcx-benchmark-luxe/cta`
 
 Encart Call-to-Action centré avec titre, texte descriptif et bouton lien.

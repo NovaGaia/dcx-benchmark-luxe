@@ -3,4 +3,6 @@ build/
 vendor/
 .playwright-mcp/
 .env
-box.css
+
+# temporary files todo
+todo/

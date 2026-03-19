@@ -1,0 +1,70 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "dcx-benchmark-luxe/blurred-section",
+  "version": "1.0.0",
+  "title": "DCX Section Floutée",
+  "category": "common",
+  "icon": "lock",
+  "description": "Conteneur masquant son contenu avec un effet de flou et un CTA formulaire HubSpot.",
+  "keywords": ["dcx", "blur", "flou", "hubspot", "paywall", "cta"],
+  "textdomain": "dcx-benchmark-luxe",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js",
+  "attributes": {
+    "overlayTitle": {
+      "type": "string",
+      "default": "Envie d'en savoir plus ?"
+    },
+    "overlayDescription": {
+      "type": "string",
+      "default": "Accédez au contenu complet en remplissant le formulaire."
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "Accéder au contenu"
+    },
+    "buttonIcon": {
+      "type": "string",
+      "default": "🔓"
+    },
+    "iframeUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "overlayHeight": {
+      "type": "number",
+      "default": 50
+    },
+    "gradientColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "blurIntensity": {
+      "type": "number",
+      "default": 6
+    },
+    "minHeight": {
+      "type": "string",
+      "default": "300px"
+    },
+    "maxHeight": {
+      "type": "string",
+      "default": "500px"
+    },
+    "showBlurPreview": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": [ "wide", "full" ],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  }
+}

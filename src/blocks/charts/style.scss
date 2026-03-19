@@ -97,6 +97,10 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		padding: max(var(--wp--preset--spacing--40), env(safe-area-inset-top))
+			max(var(--wp--preset--spacing--40), env(safe-area-inset-right))
+			max(var(--wp--preset--spacing--40), env(safe-area-inset-bottom))
+			max(var(--wp--preset--spacing--40), env(safe-area-inset-left));
 
 		&[hidden] {
 			display: none;
@@ -112,7 +116,7 @@
 	&__modal-inner {
 		position: relative;
 		z-index: 1;
-		width: min(560px, calc(100vw - 2rem));
+		width: min(560px, 100%);
 		max-height: calc(100vh - 4rem);
 		overflow-y: auto;
 		background: #fff;

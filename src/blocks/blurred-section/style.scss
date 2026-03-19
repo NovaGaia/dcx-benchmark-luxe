@@ -1,0 +1,152 @@
+.dcx-blurred-section {
+	position: relative;
+	overflow: hidden;
+
+	// Bandeau indicateur visible uniquement en éditeur (div absente du save.js)
+	&__editor-notice {
+		background: #fff3cd;
+		border: 1px solid #ffc107;
+		border-radius: 4px;
+		padding: 6px 12px;
+		font-size: 0.75rem;
+		font-weight: 600;
+		color: #856404;
+		margin-bottom: 8px;
+	}
+
+	// blur + pointer-events appliqués en inline via save.js
+	&__content {
+		width: 100%;
+	}
+
+	// Couche de flou progressif (backdrop-filter + mask gradient inline)
+	&__blur-overlay {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+	}
+
+	// Overlay gradient + CTA — inset: 0, le gradient contrôle la zone visible
+	&__overlay {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		padding-bottom: 2rem;
+
+		// Variante éditeur : en flux sous l'InnerBlocks, pas en superposition
+		&--editor {
+			position: relative;
+			inset: auto;
+			border-top: 2px dashed #ccc;
+			margin-top: 1rem;
+			padding-bottom: 1rem;
+		}
+	}
+
+	// Encart CTA centré
+	&__cta {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		gap: 0.75rem;
+		padding: 1.5rem;
+		width: 100%;
+		max-width: 480px;
+	}
+
+	&__cta-title {
+		font-size: 1.25rem;
+		font-weight: 700;
+		margin: 0;
+	}
+
+	&__cta-description {
+		font-size: 0.9375rem;
+		color: #6b7280;
+		margin: 0;
+	}
+
+	.wp-block-button__link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	&__btn-icon {
+		font-size: 1.2em;
+		line-height: 1;
+	}
+
+	// ── Modal ──────────────────────────────────────────────────────────────
+
+	&__modal {
+		position: fixed;
+		inset: 0;
+		z-index: 9999;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: max(var(--wp--preset--spacing--40), env(safe-area-inset-top))
+			max(var(--wp--preset--spacing--40), env(safe-area-inset-right))
+			max(var(--wp--preset--spacing--40), env(safe-area-inset-bottom))
+			max(var(--wp--preset--spacing--40), env(safe-area-inset-left));
+
+		&[hidden] {
+			display: none;
+		}
+	}
+
+	&__modal-overlay {
+		position: absolute;
+		inset: 0;
+		background: rgb(0 0 0 / 50%);
+	}
+
+	&__modal-inner {
+		position: relative;
+		z-index: 1;
+		width: min(640px, 100%);
+		max-height: calc(100vh - 4rem);
+		overflow-y: auto;
+		background: #fff;
+		border-radius: 8px;
+		padding: 2rem;
+		box-shadow: 0 8px 32px rgb(0 0 0 / 20%);
+
+		iframe {
+			display: block;
+			border: none;
+			width: 100%;
+		}
+	}
+
+	&__modal-close {
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 32px;
+		height: 32px;
+		font-size: 1.25rem;
+		line-height: 1;
+		background: transparent;
+		border: 1px solid #ccc;
+		border-radius: 50%;
+		cursor: pointer;
+		transition: background 0.15s;
+
+		&:hover {
+			background: #f0f0f0;
+		}
+
+		&:focus-visible {
+			outline: 3px solid #4cb8c4;
+			outline-offset: 2px;
+		}
+	}
+}
