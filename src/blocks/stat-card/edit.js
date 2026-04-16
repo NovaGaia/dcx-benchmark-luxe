@@ -19,8 +19,10 @@ import {
 /**
  * Si le hex correspond à une couleur du thème, retourne la CSS var WordPress.
  * Sinon retourne la valeur telle quelle (couleur custom).
- * @param hex
- * @param colors
+ *
+ * @param {string} hex    Valeur hexadécimale de la couleur.
+ * @param {Array}  colors Palette de couleurs du thème.
+ * @return {string} CSS var ou valeur hex d'origine.
  */
 function hexToVar( hex, colors ) {
 	if ( ! hex || ! colors ) {
@@ -35,8 +37,10 @@ function hexToVar( hex, colors ) {
 /**
  * Si la valeur est une var() WordPress, résout vers le hex pour l'affichage
  * dans le color picker (sélection du bon swatch).
- * @param value
- * @param colors
+ *
+ * @param {string} value  Valeur CSS (var() ou hex).
+ * @param {Array}  colors Palette de couleurs du thème.
+ * @return {string} Valeur hex ou valeur d'origine.
  */
 function resolveToHex( value, colors ) {
 	if ( ! value || ! colors ) {

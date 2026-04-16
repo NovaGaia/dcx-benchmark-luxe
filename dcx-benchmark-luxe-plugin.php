@@ -37,6 +37,7 @@ define( 'DCX_BENCHMARK_LUXE_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'DCX_BENCHMARK_LUXE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
 require_once DCX_BENCHMARK_LUXE_PLUGIN_DIR . 'includes/settings.php';
+require_once DCX_BENCHMARK_LUXE_PLUGIN_DIR . 'includes/nav-filters.php';
 
 /**
  * Enregistre tous les blocs du plugin.

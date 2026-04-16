@@ -2,6 +2,9 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+- Consulte la documentation WordPress en utilisant context7
+- Utilise en priorites les Design System et les composants natifs de WordPress (https://developer.wordpress.org/block-editor/reference-guides/components/)
+
 ## Methodologie APEX
 
 Appliquer systematiquement la methode **APEX** pour chaque tache de developpement :

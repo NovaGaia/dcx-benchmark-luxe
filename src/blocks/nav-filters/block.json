@@ -1,0 +1,9 @@
+{
+  "apiVersion": 3,
+  "name": "dcx-benchmark-luxe/nav-filters",
+  "title": "Navigation Filters",
+  "editorScript": "file:./index.js",
+  "supports": {
+    "inserter": false
+  }
+}
