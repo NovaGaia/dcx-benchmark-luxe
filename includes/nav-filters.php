@@ -148,6 +148,12 @@ function dcx_nav_inject_item_styles( string $block_content, array $block ): stri
 	$border = $nav_style_data['border'];
 	if ( ! empty( $border['width'] ) ) {
 		$css_vars[] = '--nav-item-border-size: ' . esc_attr( $border['width'] );
+	} else {
+		foreach ( [ 'top', 'right', 'bottom', 'left' ] as $side ) {
+			if ( ! empty( $border[ $side ]['width'] ) ) {
+				$css_vars[] = "--nav-item-border-{$side}-size: " . esc_attr( $border[ $side ]['width'] );
+			}
+		}
 	}
 	if ( ! empty( $border['radius'] ) ) {
 		if ( is_array( $border['radius'] ) ) {

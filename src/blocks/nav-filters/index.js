@@ -383,6 +383,14 @@ function NavBlockEditorStyles( { clientId, attributes } ) {
 			nativeBorderVars.push(
 				`--nav-item-border-size: ${ border.width }`
 			);
+		} else {
+			[ 'top', 'right', 'bottom', 'left' ].forEach( ( side ) => {
+				if ( border[ side ]?.width ) {
+					nativeBorderVars.push(
+						`--nav-item-border-${ side }-size: ${ border[ side ].width }`
+					);
+				}
+			} );
 		}
 		if ( border.radius ) {
 			const radius =
@@ -448,8 +456,14 @@ function NavBlockEditorStyles( { clientId, attributes } ) {
 			navItemBg && `background-color: var(--nav-item-bg)`,
 			shadow && `box-shadow: var(--nav-item-shadow)`,
 			border.radius && `border-radius: var(--nav-item-radius)`,
-			border.width &&
-				`border-width: var(--nav-item-border-size); border-style: solid; border-color: var(--nav-item-border-color, transparent)`,
+			border.width
+				? `border-width: var(--nav-item-border-size); border-style: solid; border-color: var(--nav-item-border-color, transparent)`
+				: border.top?.width ||
+				  border.right?.width ||
+				  border.bottom?.width ||
+				  border.left?.width
+				? `border-top-width: var(--nav-item-border-top-size, 0); border-right-width: var(--nav-item-border-right-size, 0); border-bottom-width: var(--nav-item-border-bottom-size, 0); border-left-width: var(--nav-item-border-left-size, 0); border-style: solid; border-color: var(--nav-item-border-color, transparent)`
+				: null,
 			( pad.top || pad.bottom ) &&
 				`padding-top: var(--nav-item-padding-top); padding-bottom: var(--nav-item-padding-bottom)`,
 			( pad.left || pad.right ) &&

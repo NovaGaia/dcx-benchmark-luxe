@@ -1,7 +1,10 @@
 /* Vars communes aux deux styles de nav — appliquées aux items */
 .wp-block-navigation .wp-block-navigation-item__content {
 	border-radius: var(--nav-item-radius, 0);
-	border-width: var(--nav-item-border-size, 0);
+	border-top-width: var(--nav-item-border-top-size, var(--nav-item-border-size, 0));
+	border-right-width: var(--nav-item-border-right-size, var(--nav-item-border-size, 0));
+	border-bottom-width: var(--nav-item-border-bottom-size, var(--nav-item-border-size, 0));
+	border-left-width: var(--nav-item-border-left-size, var(--nav-item-border-size, 0));
 	border-style: solid;
 	border-top-color: var(--nav-item-border-color-top, var(--nav-item-border-color, transparent));
 	border-right-color: var(--nav-item-border-color-right, var(--nav-item-border-color, transparent));
