@@ -1,5 +1,11 @@
 # dcx-benchmark-luxe-plugin
 
+## 1.5.1
+
+### Patch Changes
+
+-   f1fb9fb: fix(blocks): supprime les références editorStyle inexistantes qui causaient des 404 en production
+
 ## 1.5.0
 
 ### Minor Changes
