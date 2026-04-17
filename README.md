@@ -83,41 +83,53 @@ Les couleurs sont passées à l'éditeur Gutenberg via `wp_localize_script` sous
 
 ---
 
-### `dcx-benchmark-luxe/core-styles`
+### `dcx-benchmark-luxe/nav-filters`
 
-Bloc interne (non visible dans l'inserter) qui enregistre des **Block Styles** pour les blocs core et les blocs custom du plugin.
+Bloc interne (non visible dans l'inserter) qui étend `core/navigation` via des filtres Gutenberg (`addFilter`). Il ajoute une sidebar de contrôles couleur et injecte des CSS custom properties sur les items de navigation.
 
-**Fichiers :** `src/blocks/core-styles/`
+**Fichiers :** `src/blocks/nav-filters/`
 
-**Styles disponibles :** `DCX Shadow`, et une variante par couleur de la palette du `theme.json`
+**Mécanisme :** pas de `edit.js` / `save.js` — le bloc utilise `addFilter('blocks.registerBlockType', …)` pour injecter des attributs et supports sur `core/navigation`, et `addFilter('editor.BlockEdit', …)` pour injecter les contrôles sidebar et les styles dans le canvas.
 
-Les styles DCX Shadow appliquent un effet de profondeur (box-shadow + hover translateY) et, pour les variantes colorées, une bordure gauche via les variables CSS du thème (`--wp--preset--color--{slug}`).
+**Attributs ajoutés à `core/navigation` :**
 
-**Couleurs disponibles** (tirées du `theme.json` du thème) :
+| Attribut | Type | Défaut | Description |
+|---|---|---|---|
+| `navItemBg` | string | `""` | Couleur de fond des items |
+| `navItemBgHover` | string | `""` | Couleur de fond au survol |
+| `navItemColorHover` | string | `""` | Couleur du texte au survol |
+| `navItemBorderColor` | string | `""` | Couleur de bordure (tous côtés liés) |
+| `navItemBorderColorTop` | string | `""` | Couleur de bordure haut |
+| `navItemBorderColorRight` | string | `""` | Couleur de bordure droite |
+| `navItemBorderColorBottom` | string | `""` | Couleur de bordure bas |
+| `navItemBorderColorLeft` | string | `""` | Couleur de bordure gauche |
+| `navItemBorderColorLinked` | boolean | `true` | Lie/délie les couleurs de bordure par côté |
+| `navItemActiveBg` | string | `""` | Couleur de fond de l'item actif |
+| `navItemActiveColor` | string | `""` | Couleur du texte de l'item actif |
 
-| Slug | Nom |
-|------|-----|
-| `accent-1` … `accent-5` | Accents 1 à 5 |
-| `custom-secondary-1` … `custom-secondary-5` | Secondaires 1 à 5 |
-| `custom-digit-1`, `custom-digit-2` | Digit 1, Digit 2 |
-| `contrast` | Contraste |
+**Supports natifs activés sur `core/navigation` :**
+- `shadow` — ombre portée sur les items
+- `__experimentalBorder` : `radius`, `width` (couleur désactivée — gérée par les attributs custom)
+- `spacing.padding` — espacement interne des items
 
-> Pour ajouter une couleur : l'ajouter dans `theme.json` du thème **et** dans la liste `$dcx-color-slugs` de `style.scss` + le tableau `boxStyles` de `index.js`, puis rebuilder.
+**CSS custom properties injectées (via `<style>` dans le canvas) :**
 
-**Blocs ciblés :**
-
-| Bloc | Nom technique |
+| Variable | Attribut source |
 |---|---|
-| Groupe | `core/group` |
-| Colonnes | `core/columns` |
-| Colonne | `core/column` |
-| Pile | `core/stack` |
-| Grille | `core/grid` |
-| DCX Stat Card | `dcx-benchmark-luxe/stat-card` |
-| DCX Charts | `dcx-benchmark-luxe/charts` |
-| DCX CTA | `dcx-benchmark-luxe/cta` |
+| `--nav-item-bg` | `navItemBg` |
+| `--nav-item-bg-hover` | `navItemBgHover` |
+| `--nav-item-color-hover` | `navItemColorHover` |
+| `--nav-item-border-color` | `navItemBorderColor` |
+| `--nav-item-border-color-top/right/bottom/left` | attributs par côté |
+| `--nav-item-border-size` | `style.border.width` (support natif) |
+| `--nav-item-border-[side]-size` | `style.border.[side].width` (support natif) |
+| `--nav-item-radius` | `style.border.radius` (support natif) |
+| `--nav-item-shadow` | `style.shadow` (support natif) |
+| `--nav-item-padding-[top/right/bottom/left]` | `style.spacing.padding` (support natif) |
 
-Le CSS est chargé en éditeur et en front-end (enqueue global via `wp_enqueue_scripts`).
+**Copier / Coller le style :** bouton dans la sidebar "Style" — sérialise tous les attributs custom dans `localStorage` (`dcx-nav-item-style`) pour les transférer d'un bloc navigation à un autre.
+
+**Résolution des couleurs :** si la couleur sélectionnée correspond à une couleur de la palette du thème, elle est stockée comme `var(--wp--preset--color--{slug})` plutôt qu'en hex.
 
 ---
 
@@ -277,4 +289,3 @@ Le plugin embarque **[plugin-update-checker](https://github.com/YahnisElsts/plug
 Le dossier `docs/` contient des notes techniques sur des patterns utilisés dans le projet :
 
 - [`docs/dark-mode-theme-json.md`](./docs/dark-mode-theme-json.md) — Dark mode natif avec `light-dark()` + `color-scheme` dans `theme.json`
-
