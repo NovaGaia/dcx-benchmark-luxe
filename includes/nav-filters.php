@@ -46,10 +46,12 @@ function dcx_nav_strip_border_data( array $parsed_block ): array {
 
 	$border  = $parsed_block['attrs']['style']['border'] ?? [];
 	$padding = $parsed_block['attrs']['style']['spacing']['padding'] ?? [];
+	$shadow  = $parsed_block['attrs']['style']['shadow'] ?? '';
 
 	$GLOBALS['dcx_nav_border_queue'][] = [
 		'border'  => $border,
 		'padding' => $padding,
+		'shadow'  => $shadow,
 	];
 
 	if ( ! empty( $border ) ) {
@@ -57,6 +59,9 @@ function dcx_nav_strip_border_data( array $parsed_block ): array {
 	}
 	if ( ! empty( $padding ) ) {
 		unset( $parsed_block['attrs']['style']['spacing']['padding'] );
+	}
+	if ( ! empty( $shadow ) ) {
+		unset( $parsed_block['attrs']['style']['shadow'] );
 	}
 
 	return $parsed_block;
@@ -74,6 +79,10 @@ add_filter( 'render_block_data', 'dcx_nav_strip_border_data', 5 );
 function dcx_nav_skip_support_serialization( array $settings, array $metadata ): array {
 	if ( ( $metadata['name'] ?? '' ) !== 'core/navigation' ) {
 		return $settings;
+	}
+
+	if ( isset( $settings['supports']['shadow'] ) ) {
+		$settings['supports']['shadow'] = false;
 	}
 
 	if ( isset( $settings['supports']['border'] ) ) {
@@ -113,12 +122,12 @@ function dcx_nav_inject_item_styles( string $block_content, array $block ): stri
 	$color_map = [
 		'navItemBg'               => '--nav-item-bg',
 		'navItemBgHover'          => '--nav-item-bg-hover',
-		'navItemColor'            => '--nav-item-color',
 		'navItemBorderColor'      => '--nav-item-border-color',
 		'navItemBorderColorTop'   => '--nav-item-border-color-top',
 		'navItemBorderColorRight' => '--nav-item-border-color-right',
 		'navItemBorderColorBottom'=> '--nav-item-border-color-bottom',
 		'navItemBorderColorLeft'  => '--nav-item-border-color-left',
+		'navItemColorHover'       => '--nav-item-color-hover',
 		'navItemActiveBg'         => '--nav-item-active-bg',
 		'navItemActiveColor'      => '--nav-item-active-color',
 	];
@@ -152,6 +161,12 @@ function dcx_nav_inject_item_styles( string $block_content, array $block ): stri
 		}
 	}
 
+	// Support natif shadow
+	$shadow = $nav_style_data['shadow'] ?? '';
+	if ( ! empty( $shadow ) ) {
+		$css_vars[] = '--nav-item-shadow: ' . esc_attr( dcx_resolve_wp_preset_var( $shadow ) );
+	}
+
 	// Support natif spacing.padding
 	$padding = $nav_style_data['padding'];
 	if ( is_array( $padding ) ) {
@@ -171,6 +186,8 @@ function dcx_nav_inject_item_styles( string $block_content, array $block ): stri
 	if ( empty( $css_vars ) ) {
 		return $block_content;
 	}
+
+	wp_enqueue_style( 'dcx-benchmark-luxe-nav-base' );
 
 	$inline = implode( '; ', $css_vars );
 

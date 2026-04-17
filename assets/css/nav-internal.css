@@ -1,0 +1,128 @@
+/* ==========================================================================
+   Navigation interne (.is-style-nav-internal)
+   Navigation d'ancres/sections, utilisée à l'intérieur de certaines pages.
+   ========================================================================== */
+
+/* — Desktop ---------------------------------------------------------------- */
+
+.wp-block-navigation.is-style-nav-internal {
+	position: relative;
+
+	/* Valeurs par défaut — surchargées par les styles inline de nav-filters */
+	--nav-item-bg: #eaeaea;
+	--nav-item-bg-hover: #d5d5d5;
+	--nav-item-color: var(--wp--preset--color--contrast);
+	--nav-item-active-bg: var(--wp--preset--color--contrast);
+	--nav-item-active-color: var(--wp--preset--color--base);
+	--nav-item-radius: var(--wp--preset--border-radius--100);
+	--nav-item-padding-top: var(--wp--preset--spacing--20);
+	--nav-item-padding-right: var(--wp--preset--spacing--40);
+	--nav-item-padding-bottom: var(--wp--preset--spacing--20);
+	--nav-item-padding-left: var(--wp--preset--spacing--40);
+}
+
+.wp-block-navigation.is-style-nav-internal > .wp-block-navigation__container {
+
+	/* layout (direction, justification, gap) géré par Gutenberg */
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.wp-block-navigation.is-style-nav-internal .wp-block-navigation-item__content {
+	display: block;
+	text-decoration: none;
+}
+
+/* Masquer le toggle sur desktop */
+.wp-block-navigation.is-style-nav-internal .nav-internal-toggle {
+	display: none;
+}
+
+/* — Mobile --------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+
+	/* Empiler verticalement, hériter l'alignement Gutenberg */
+	.wp-block-navigation.is-style-nav-internal {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start; /* défaut */
+	}
+
+	.wp-block-navigation.is-style-nav-internal.items-justified-center {
+		align-items: center;
+	}
+
+	.wp-block-navigation.is-style-nav-internal.items-justified-right,
+	.wp-block-navigation.is-style-nav-internal.items-justified-space-between {
+		align-items: flex-end;
+	}
+
+	/* Toggle pill */
+	.wp-block-navigation.is-style-nav-internal .nav-internal-toggle {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--wp--preset--spacing--20);
+		padding:
+			var(--nav-item-padding-top)
+			var(--nav-item-padding-right)
+			var(--nav-item-padding-bottom)
+			var(--nav-item-padding-left);
+		border-radius: var(--nav-item-radius, var(--wp--preset--border-radius--100));
+		border-width: var(--nav-item-border-size, 0);
+		border-style: solid;
+		border-top-color: var(--nav-item-border-color-top, var(--nav-item-border-color, transparent));
+		border-right-color: var(--nav-item-border-color-right, var(--nav-item-border-color, transparent));
+		border-bottom-color: var(--nav-item-border-color-bottom, var(--nav-item-border-color, transparent));
+		border-left-color: var(--nav-item-border-color-left, var(--nav-item-border-color, transparent));
+		background-color: var(--nav-item-active-bg);
+		color: var(--nav-item-active-color);
+		font-weight: 500;
+		cursor: pointer;
+		max-width: 100%;
+	}
+
+	.wp-block-navigation.is-style-nav-internal .nav-internal-toggle::after {
+		content: "\25BE"; /* ▾ */
+		flex-shrink: 0;
+	}
+
+	.wp-block-navigation.is-style-nav-internal.is-open .nav-internal-toggle::after {
+		content: "\25B4"; /* ▴ */
+	}
+
+	/* Dropdown — sans fond ni ombre */
+	.wp-block-navigation.is-style-nav-internal > .wp-block-navigation__container {
+		display: none;
+		position: absolute;
+		top: calc(100% + var(--wp--preset--spacing--20));
+		left: 0; /* défaut — surchargé selon justification */
+		z-index: 100;
+		flex-direction: column;
+		gap: var(--wp--preset--spacing--10);
+		padding: var(--wp--preset--spacing--20);
+		min-width: 14rem;
+	}
+
+	/* Positionnement du dropdown selon la justification Gutenberg */
+	.wp-block-navigation.is-style-nav-internal.items-justified-center > .wp-block-navigation__container {
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	.wp-block-navigation.is-style-nav-internal.items-justified-right > .wp-block-navigation__container,
+	.wp-block-navigation.is-style-nav-internal.items-justified-space-between > .wp-block-navigation__container {
+		left: auto;
+		right: 0;
+	}
+
+	.wp-block-navigation.is-style-nav-internal.is-open > .wp-block-navigation__container {
+		display: flex;
+	}
+
+	.wp-block-navigation.is-style-nav-internal .wp-block-navigation-item__content {
+		white-space: normal;
+	}
+}

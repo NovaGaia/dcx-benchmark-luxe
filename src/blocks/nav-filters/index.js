@@ -16,7 +16,7 @@ const STORAGE_KEY = 'dcx-nav-item-style';
 const STYLE_ATTRS = [
 	'navItemBg',
 	'navItemBgHover',
-	'navItemColor',
+	'navItemColorHover',
 	'navItemBorderColor',
 	'navItemBorderColorTop',
 	'navItemBorderColorRight',
@@ -30,7 +30,7 @@ const STYLE_ATTRS = [
 const VAR_MAP = {
 	navItemBg: '--nav-item-bg',
 	navItemBgHover: '--nav-item-bg-hover',
-	navItemColor: '--nav-item-color',
+	navItemColorHover: '--nav-item-color-hover',
 	navItemBorderColor: '--nav-item-border-color',
 	navItemBorderColorTop: '--nav-item-border-color-top',
 	navItemBorderColorRight: '--nav-item-border-color-right',
@@ -101,7 +101,7 @@ function NavItemInspectorControls( { attributes, setAttributes } ) {
 	const {
 		navItemBg,
 		navItemBgHover,
-		navItemColor,
+		navItemColorHover,
 		navItemBorderColor,
 		navItemBorderColorTop,
 		navItemBorderColorLinked,
@@ -157,9 +157,9 @@ function NavItemInspectorControls( { attributes, setAttributes } ) {
 						colors: safeColors,
 					},
 					{
-						label: __( 'Texte', 'dcx-benchmark-luxe' ),
-						value: resolveToHex( navItemColor, safeColors ),
-						onChange: setColor( 'navItemColor' ),
+						label: __( 'Texte (survol)', 'dcx-benchmark-luxe' ),
+						value: resolveToHex( navItemColorHover, safeColors ),
+						onChange: setColor( 'navItemColorHover' ),
 						colors: safeColors,
 					},
 					{
@@ -312,7 +312,7 @@ addFilter(
 				...settings.attributes,
 				navItemBg: { type: 'string', default: '' },
 				navItemBgHover: { type: 'string', default: '' },
-				navItemColor: { type: 'string', default: '' },
+				navItemColorHover: { type: 'string', default: '' },
 				navItemBorderColor: { type: 'string', default: '' },
 				navItemBorderColorTop: { type: 'string', default: '' },
 				navItemBorderColorRight: { type: 'string', default: '' },
@@ -370,6 +370,12 @@ function NavBlockEditorStyles( { clientId, attributes } ) {
 				( [ attr, cssVar ] ) => `${ cssVar }: ${ attributes[ attr ] }`
 			);
 
+		// CSS var depuis le support natif shadow
+		const shadow = attributes?.style?.shadow ?? '';
+		const nativeShadowVars = shadow
+			? [ `--nav-item-shadow: ${ resolveWpPresetVar( shadow ) }` ]
+			: [];
+
 		// CSS vars depuis le support natif border (width, radius)
 		const border = attributes?.style?.border ?? {};
 		const nativeBorderVars = [];
@@ -413,6 +419,7 @@ function NavBlockEditorStyles( { clientId, attributes } ) {
 
 		const allVarDecls = [
 			...colorVarDecls,
+			...nativeShadowVars,
 			...nativeBorderVars,
 			...nativePaddingVars,
 		];
@@ -428,7 +435,7 @@ function NavBlockEditorStyles( { clientId, attributes } ) {
 		const {
 			navItemBg,
 			navItemBgHover,
-			navItemColor,
+			navItemColorHover,
 			navItemBorderColor,
 			navItemBorderColorTop,
 			navItemBorderColorRight,
@@ -439,7 +446,7 @@ function NavBlockEditorStyles( { clientId, attributes } ) {
 		// Règles directes sur les items pour le rendu éditeur
 		const itemDecls = [
 			navItemBg && `background-color: var(--nav-item-bg)`,
-			navItemColor && `color: var(--nav-item-color)`,
+			shadow && `box-shadow: var(--nav-item-shadow)`,
 			border.radius && `border-radius: var(--nav-item-radius)`,
 			border.width &&
 				`border-width: var(--nav-item-border-size); border-style: solid; border-color: var(--nav-item-border-color, transparent)`,
@@ -454,8 +461,15 @@ function NavBlockEditorStyles( { clientId, attributes } ) {
 		const css = [
 			`${ navSel } { ${ varDeclarations }; }`,
 			itemDecls ? `${ itemSel } { ${ itemDecls }; }` : '',
-			navItemBgHover
-				? `${ itemSel }:hover { background-color: var(--nav-item-bg-hover); }`
+			navItemBgHover || navItemColorHover
+				? `${ itemSel }:hover { ${ [
+						navItemBgHover &&
+							`background-color: var(--nav-item-bg-hover)`,
+						navItemColorHover &&
+							`color: var(--nav-item-color-hover)`,
+				  ]
+						.filter( Boolean )
+						.join( '; ' ) }; }`
 				: '',
 			navItemBorderColor
 				? `${ itemSel } { border-color: var(--nav-item-border-color); }`

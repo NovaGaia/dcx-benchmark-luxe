@@ -1,0 +1,35 @@
+/* Vars communes aux deux styles de nav — appliquées aux items */
+.wp-block-navigation .wp-block-navigation-item__content {
+	border-radius: var(--nav-item-radius, 0);
+	border-width: var(--nav-item-border-size, 0);
+	border-style: solid;
+	border-top-color: var(--nav-item-border-color-top, var(--nav-item-border-color, transparent));
+	border-right-color: var(--nav-item-border-color-right, var(--nav-item-border-color, transparent));
+	border-bottom-color: var(--nav-item-border-color-bottom, var(--nav-item-border-color, transparent));
+	border-left-color: var(--nav-item-border-color-left, var(--nav-item-border-color, transparent));
+	padding-top: var(--nav-item-padding-top, revert);
+	padding-right: var(--nav-item-padding-right, revert);
+	padding-bottom: var(--nav-item-padding-bottom, revert);
+	padding-left: var(--nav-item-padding-left, revert);
+	background-color: var(--nav-item-bg, revert);
+	box-shadow: var(--nav-item-shadow, revert);
+	transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+/* Spécificité (0,3,0) pour passer après les styles natifs WP navigation */
+.wp-block-navigation.wp-block-navigation .wp-block-navigation-item__content:hover {
+	background-color: var(--nav-item-bg-hover, revert);
+	color: var(--nav-item-color-hover, inherit);
+}
+
+.wp-block-navigation.wp-block-navigation .current-menu-item .wp-block-navigation-item__content,
+.wp-block-navigation.wp-block-navigation .wp-block-navigation-item--active .wp-block-navigation-item__content {
+	background-color: var(--nav-item-active-bg, revert);
+	color: var(--nav-item-active-color, inherit);
+}
+
+.wp-block-navigation.wp-block-navigation .current-menu-item .wp-block-navigation-item__content:hover,
+.wp-block-navigation.wp-block-navigation .wp-block-navigation-item--active .wp-block-navigation-item__content:hover {
+	background-color: var(--nav-item-active-bg, revert);
+	color: var(--nav-item-active-color, inherit);
+}
