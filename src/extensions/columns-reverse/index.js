@@ -59,6 +59,30 @@ addFilter(
 	withColumnsReverseControl
 );
 
+const withColumnsReverseEditorClass = createHigherOrderComponent(
+	( BlockListBlock ) => {
+		return ( props ) => {
+			if (
+				props.name !== 'core/columns' ||
+				! props.attributes.reverseOnMobile
+			) {
+				return <BlockListBlock { ...props } />;
+			}
+			const extraClass = [ props.className, 'has-reverse-on-mobile' ]
+				.filter( Boolean )
+				.join( ' ' );
+			return <BlockListBlock { ...props } className={ extraClass } />;
+		};
+	},
+	'withColumnsReverseEditorClass'
+);
+
+addFilter(
+	'editor.BlockListBlock',
+	'dcx/columns-reverse-editor-class',
+	withColumnsReverseEditorClass
+);
+
 addFilter(
 	'blocks.getSaveContent.extraProps',
 	'dcx/columns-reverse-class',
