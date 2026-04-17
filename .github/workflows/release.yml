@@ -73,6 +73,7 @@ jobs:
           cp dcx-benchmark-luxe-plugin.php "${PLUGIN_NAME}/"
           cp README.md "${PLUGIN_NAME}/"
           cp -r includes/ "${PLUGIN_NAME}/includes/"
+          cp -r assets/ "${PLUGIN_NAME}/assets/"
           cp -r build/ "${PLUGIN_NAME}/build/"
           cp composer.json "${PLUGIN_NAME}/"
           cp -r vendor/ "${PLUGIN_NAME}/vendor/"
