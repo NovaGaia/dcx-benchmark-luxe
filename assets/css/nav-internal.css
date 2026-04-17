@@ -42,7 +42,7 @@
 
 /* — Mobile --------------------------------------------------------------- */
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
 
 	/* Empiler verticalement, hériter l'alignement Gutenberg */
 	.wp-block-navigation.is-style-nav-internal {
