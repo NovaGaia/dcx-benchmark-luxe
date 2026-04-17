@@ -67,3 +67,49 @@ function dcx_benchmark_luxe_enqueue_button_styles() {
 	wp_enqueue_style( 'wp-block-buttons' );
 }
 add_action( 'wp_enqueue_scripts', 'dcx_benchmark_luxe_enqueue_button_styles', 1 );
+
+/**
+ * Enregistre le script et le style de l'extension columns-reverse dans l'éditeur.
+ */
+function dcx_benchmark_luxe_enqueue_columns_reverse_editor() {
+	$asset_file = DCX_BENCHMARK_LUXE_PLUGIN_DIR . 'build/extensions/columns-reverse/index.asset.php';
+	if ( ! file_exists( $asset_file ) ) {
+		return;
+	}
+	$asset = include $asset_file;
+
+	wp_enqueue_script(
+		'dcx-columns-reverse-editor',
+		DCX_BENCHMARK_LUXE_PLUGIN_URL . 'build/extensions/columns-reverse/index.js',
+		$asset['dependencies'],
+		$asset['version'],
+		true
+	);
+
+	wp_enqueue_style(
+		'dcx-columns-reverse-editor-style',
+		DCX_BENCHMARK_LUXE_PLUGIN_URL . 'build/extensions/columns-reverse/style-index.css',
+		[],
+		$asset['version']
+	);
+}
+add_action( 'enqueue_block_editor_assets', 'dcx_benchmark_luxe_enqueue_columns_reverse_editor' );
+
+/**
+ * Enregistre le style de l'extension columns-reverse en front-end.
+ */
+function dcx_benchmark_luxe_enqueue_columns_reverse_style() {
+	$asset_file = DCX_BENCHMARK_LUXE_PLUGIN_DIR . 'build/extensions/columns-reverse/index.asset.php';
+	if ( ! file_exists( $asset_file ) ) {
+		return;
+	}
+	$asset = include $asset_file;
+
+	wp_enqueue_style(
+		'dcx-columns-reverse-style',
+		DCX_BENCHMARK_LUXE_PLUGIN_URL . 'build/extensions/columns-reverse/style-index.css',
+		[],
+		$asset['version']
+	);
+}
+add_action( 'wp_enqueue_scripts', 'dcx_benchmark_luxe_enqueue_columns_reverse_style' );
