@@ -1,5 +1,22 @@
 # dcx-benchmark-luxe-plugin
 
+## 1.5.0
+
+### Minor Changes
+
+-   a2c155d: feat(nav-filters): ajout des couleurs de bordure par côté pour core/navigation
+
+    -   Nouveau panneau "Couleur de bordure" dans l'onglet Styles avec toggle lié/délié
+    -   Mode lié : un seul picker applique `--nav-item-border-color` sur les 4 côtés
+    -   Mode délié : 4 pickers indépendants (Haut, Droite, Bas, Gauche) → `--nav-item-border-color-top/right/bottom/left`
+    -   PHP : injection des nouvelles CSS vars sur `<nav>` et `<ul>` en frontend
+    -   Thème : migration de `border-color` vers les 4 propriétés `border-*-color` avec fallback chaîné
+
+### Patch Changes
+
+-   9d34294: docs(readme): supprime core-styles (bloc supprimé), documente nav-filters
+-   e20071c: Supprime le bloc core-styles — les block styles dcx-box-\* et le CSS associé sont désormais gérés dynamiquement par le thème via wp_get_global_settings().
+
 ## 1.4.0
 
 ### Minor Changes
