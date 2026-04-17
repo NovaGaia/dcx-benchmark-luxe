@@ -1,5 +1,11 @@
 # dcx-benchmark-luxe-plugin
 
+## 1.5.2
+
+### Patch Changes
+
+-   606b207: fix(release): inclut le dossier assets/ dans le ZIP de release pour corriger les 404 sur nav-base.css et nav-internal.css
+
 ## 1.5.1
 
 ### Patch Changes
