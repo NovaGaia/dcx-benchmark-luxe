@@ -1,5 +1,15 @@
 # dcx-benchmark-luxe-plugin
 
+## 1.6.0
+
+### Minor Changes
+
+-   c543893: Add "Reverse columns on mobile" option to core/columns block. A new toggle in the block sidebar applies `flex-direction: column-reverse` at ≤ 600px via the `has-reverse-on-mobile` CSS class, both in the editor canvas and on the front-end.
+
+### Patch Changes
+
+-   40fcc53: Fix webpack config so custom blocks are compiled. The entry override now uses an async function to correctly await block auto-discovery from `@wordpress/scripts` v27+.
+
 ## 1.5.2
 
 ### Patch Changes
