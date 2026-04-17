@@ -58,23 +58,6 @@ function dcx_benchmark_luxe_register_blocks() {
 add_action( 'init', 'dcx_benchmark_luxe_register_blocks' );
 
 /**
- * Charge les styles globaux (block styles pour blocs core) en front-end.
- */
-function dcx_benchmark_luxe_enqueue_global_styles() {
-	$css_file = DCX_BENCHMARK_LUXE_PLUGIN_DIR . 'build/blocks/core-styles/style-index.css';
-
-	if ( file_exists( $css_file ) ) {
-		wp_enqueue_style(
-			'dcx-benchmark-luxe-core-styles',
-			DCX_BENCHMARK_LUXE_PLUGIN_URL . 'build/blocks/core-styles/style-index.css',
-			[],
-			filemtime( $css_file )
-		);
-	}
-}
-add_action( 'wp_enqueue_scripts', 'dcx_benchmark_luxe_enqueue_global_styles' );
-
-/**
  * Charge les styles core/button à priorité 1, AVANT wp_add_global_styles_for_blocks() (priorité 10).
  * WordPress n'injecte le CSS de bloc (couleur, rayon, ombre depuis theme.json) que si
  * wp-block-button est déjà dans la queue au moment du check dans wp_add_global_styles_for_blocks().
