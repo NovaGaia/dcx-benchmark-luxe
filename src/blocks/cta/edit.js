@@ -141,6 +141,14 @@ export default function Edit( { attributes, setAttributes } ) {
 							setAttributes( { buttonIcon: value } )
 						}
 					/>
+					<div style={ { marginTop: '8px' } } />
+					<TextControl
+						label={ __( 'Texte du bouton', 'dcx-benchmark-luxe' ) }
+						value={ buttonText }
+						onChange={ ( value ) =>
+							setAttributes( { buttonText: value } )
+						}
+					/>
 				</PanelBody>
 			</InspectorControls>
 
