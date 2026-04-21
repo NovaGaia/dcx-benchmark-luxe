@@ -1,5 +1,11 @@
 # dcx-benchmark-luxe-plugin
 
+## 1.7.0
+
+### Minor Changes
+
+-   c55f314: Ajout d'un champ "Texte du bouton" dans le sidebar du bloc CTA
+
 ## 1.6.0
 
 ### Minor Changes
