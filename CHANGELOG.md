@@ -1,5 +1,11 @@
 # dcx-benchmark-luxe-plugin
 
+## 1.7.1
+
+### Patch Changes
+
+-   bump: fake patch release
+
 ## 1.7.0
 
 ### Minor Changes
