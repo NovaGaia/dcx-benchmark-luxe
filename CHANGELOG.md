@@ -1,5 +1,11 @@
 # dcx-benchmark-luxe-plugin
 
+## 1.7.2
+
+### Patch Changes
+
+-   Bump version to 1.7.2
+
 ## 1.7.1
 
 ### Patch Changes
