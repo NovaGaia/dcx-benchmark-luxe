@@ -1,5 +1,11 @@
 # dcx-benchmark-luxe-plugin
 
+## 1.8.0
+
+### Minor Changes
+
+-   Ajout de l'extension scroll-shadow : toggle "Ombre au scroll" dans la sidebar Gutenberg pour les blocs core/group, core/cover, core/columns et core/column.
+
 ## 1.7.2
 
 ### Patch Changes

@@ -3,7 +3,7 @@
  * Plugin Name: DCX Benchmark Luxe
  * Plugin URI:  https://github.com/NovaGaia/dcx-benchmark-luxe
  * Description: Blocs Gutenberg pour DCX Benchmark Luxe.
- * Version:     1.7.2
+ * Version:     1.8.0
  * Author:      DCX
  * Author URI:  https://example.com
  * License:     GPL-2.0+
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'DCX_BENCHMARK_LUXE_VERSION', '1.7.2' );
+define( 'DCX_BENCHMARK_LUXE_VERSION', '1.8.0' );
 
 // Mises à jour automatiques via GitHub Releases (plugin-update-checker).
 if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
@@ -113,3 +113,52 @@ function dcx_benchmark_luxe_enqueue_columns_reverse_style() {
 	);
 }
 add_action( 'wp_enqueue_scripts', 'dcx_benchmark_luxe_enqueue_columns_reverse_style' );
+
+/**
+ * Enregistre le script de l'extension scroll-shadow dans l'éditeur.
+ */
+function dcx_benchmark_luxe_enqueue_scroll_shadow_editor() {
+	$asset_file = DCX_BENCHMARK_LUXE_PLUGIN_DIR . 'build/extensions/scroll-shadow/index.asset.php';
+	if ( ! file_exists( $asset_file ) ) {
+		return;
+	}
+	$asset = include $asset_file;
+
+	wp_enqueue_script(
+		'dcx-scroll-shadow-editor',
+		DCX_BENCHMARK_LUXE_PLUGIN_URL . 'build/extensions/scroll-shadow/index.js',
+		$asset['dependencies'],
+		$asset['version'],
+		true
+	);
+}
+add_action( 'enqueue_block_editor_assets', 'dcx_benchmark_luxe_enqueue_scroll_shadow_editor' );
+
+/**
+ * Enregistre le script et le style de l'extension scroll-shadow en front-end.
+ */
+function dcx_benchmark_luxe_enqueue_scroll_shadow_front() {
+	$view_asset_file  = DCX_BENCHMARK_LUXE_PLUGIN_DIR . 'build/extensions/scroll-shadow/view.asset.php';
+	$index_asset_file = DCX_BENCHMARK_LUXE_PLUGIN_DIR . 'build/extensions/scroll-shadow/index.asset.php';
+	if ( ! file_exists( $view_asset_file ) || ! file_exists( $index_asset_file ) ) {
+		return;
+	}
+	$view_asset  = include $view_asset_file;
+	$index_asset = include $index_asset_file;
+
+	wp_enqueue_script(
+		'dcx-scroll-shadow-view',
+		DCX_BENCHMARK_LUXE_PLUGIN_URL . 'build/extensions/scroll-shadow/view.js',
+		$view_asset['dependencies'],
+		$view_asset['version'],
+		true
+	);
+
+	wp_enqueue_style(
+		'dcx-scroll-shadow-style',
+		DCX_BENCHMARK_LUXE_PLUGIN_URL . 'build/extensions/scroll-shadow/style-index.css',
+		[],
+		$index_asset['version']
+	);
+}
+add_action( 'wp_enqueue_scripts', 'dcx_benchmark_luxe_enqueue_scroll_shadow_front' );
