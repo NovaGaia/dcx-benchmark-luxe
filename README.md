@@ -248,6 +248,31 @@ Le bouton utilise toujours les classes `wp-block-button__link wp-element-button`
 
 ---
 
+### `dcx-benchmark-luxe/button-popup`
+
+Extension sur le bloc `core/button` : affiche le lien du bouton dans une popin modal au lieu de naviguer directement. Idéal pour les formulaires HubSpot.
+
+**Fichiers :** `src/extensions/button-popup/`
+
+**Attributs ajoutés à `core/button` :**
+
+| Attribut    | Type    | Défaut  | Description |
+|-------------|---------|---------|-------------|
+| `hasPopup`  | boolean | `false` | Active l'affichage en popin |
+| `popupUrl`  | string  | `""`    | URL du formulaire à afficher dans la popin (défaut : URL du bouton) |
+
+**Détection automatique :** si l'URL du bouton correspond au pattern HubSpot (`*.hsforms.com`), un message contextuel "URL HubSpot détectée — activation recommandée" apparaît sous le toggle.
+
+**Comportement :**
+- Clic sur le bouton → overlay fullscreen avec backdrop blur + iframe HubSpot centré
+- Fermeture via croix, fond semi-transparent, ou touche `Escape`
+- Body lock (`overflow: hidden`) pour éviter le scroll pendant la popin
+- iframe sandboxée : `allow-scripts allow-same-origin allow-forms allow-popups`
+
+**Responsive :** conteneur en `min(90vw, 800px)` × `min(90vh, 700px)`, centré avec flexbox.
+
+---
+
 ## Versioning et releases
 
 Le projet utilise **[Changesets](https://github.com/changesets/changesets)** pour gérer les versions et **GitHub Actions** pour publier automatiquement les releases.

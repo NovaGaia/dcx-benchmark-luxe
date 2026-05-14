@@ -3,7 +3,7 @@
  * Plugin Name: DCX Benchmark Luxe
  * Plugin URI:  https://github.com/NovaGaia/dcx-benchmark-luxe
  * Description: Blocs Gutenberg pour DCX Benchmark Luxe.
- * Version:     1.8.0
+ * Version:     1.8.1
  * Author:      DCX
  * Author URI:  https://example.com
  * License:     GPL-2.0+
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'DCX_BENCHMARK_LUXE_VERSION', '1.8.0' );
+define( 'DCX_BENCHMARK_LUXE_VERSION', '1.8.1' );
 
 // Mises à jour automatiques via GitHub Releases (plugin-update-checker).
 if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
@@ -162,3 +162,59 @@ function dcx_benchmark_luxe_enqueue_scroll_shadow_front() {
 	);
 }
 add_action( 'wp_enqueue_scripts', 'dcx_benchmark_luxe_enqueue_scroll_shadow_front' );
+
+/**
+ * Enregistre le script de l'extension button-popup dans l'éditeur.
+ */
+function dcx_benchmark_luxe_enqueue_button_popup_editor() {
+	$asset_file = DCX_BENCHMARK_LUXE_PLUGIN_DIR . 'build/extensions/button-popup/index.asset.php';
+	if ( ! file_exists( $asset_file ) ) {
+		return;
+	}
+	$asset = include $asset_file;
+
+	wp_enqueue_script(
+		'dcx-button-popup-editor',
+		DCX_BENCHMARK_LUXE_PLUGIN_URL . 'build/extensions/button-popup/index.js',
+		$asset['dependencies'],
+		$asset['version'],
+		true
+	);
+
+	wp_enqueue_style(
+		'dcx-button-popup-editor-style',
+		DCX_BENCHMARK_LUXE_PLUGIN_URL . 'build/extensions/button-popup/style-index.css',
+		[],
+		$asset['version']
+	);
+}
+add_action( 'enqueue_block_editor_assets', 'dcx_benchmark_luxe_enqueue_button_popup_editor' );
+
+/**
+ * Enregistre le script et le style de l'extension button-popup en front-end.
+ */
+function dcx_benchmark_luxe_enqueue_button_popup_front() {
+	$index_asset_file = DCX_BENCHMARK_LUXE_PLUGIN_DIR . 'build/extensions/button-popup/index.asset.php';
+	$view_asset_file  = DCX_BENCHMARK_LUXE_PLUGIN_DIR . 'build/extensions/button-popup/view.asset.php';
+	if ( ! file_exists( $index_asset_file ) || ! file_exists( $view_asset_file ) ) {
+		return;
+	}
+	$index_asset = include $index_asset_file;
+	$view_asset  = include $view_asset_file;
+
+	wp_enqueue_script(
+		'dcx-button-popup-view',
+		DCX_BENCHMARK_LUXE_PLUGIN_URL . 'build/extensions/button-popup/view.js',
+		$view_asset['dependencies'],
+		$view_asset['version'],
+		true
+	);
+
+	wp_enqueue_style(
+		'dcx-button-popup-style',
+		DCX_BENCHMARK_LUXE_PLUGIN_URL . 'build/extensions/button-popup/style-index.css',
+		[],
+		$index_asset['version']
+	);
+}
+add_action( 'wp_enqueue_scripts', 'dcx_benchmark_luxe_enqueue_button_popup_front' );

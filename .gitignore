@@ -1,8 +1,11 @@
 node_modules/
 build/
 vendor/
-.playwright-mcp/
 .env
+
+# claude
+.playwright-mcp/
+graphify-out/
 
 # temporary files todo
 todo/
