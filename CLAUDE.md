@@ -84,6 +84,12 @@ Gutenberg fournit déjà tout ce dont un bloc a besoin. Avant d'écrire un `<inp
 - Toujours utiliser le skill `git-commit` pour créer des commits (jamais `git commit` directement)
 - Toujours mettre à jour le README avant de commit et push
 
+## Versioning
+
+- Toujours utiliser `pnpm version` (qui appelle `changeset version && node scripts/sync-version.mjs`) pour bump de version
+- **Ne jamais bump la version manuellement** dans `package.json` ou `dcx-benchmark-luxe-plugin.php`
+- `pnpm version` synchronise automatiquement la version sur `package.json` + `dcx-benchmark-luxe-plugin.php` (header + constante)
+
 ## Contraintes importantes
 
 - Le dossier `build/` est gitignored et généré — ne jamais éditer manuellement
