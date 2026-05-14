@@ -1,5 +1,17 @@
 # dcx-benchmark-luxe-plugin
 
+## 1.8.2
+
+### Patch Changes
+
+-   fix(button-popup): selector view.js pour cibler div.has-popup et [data-popup-url]
+
+## 1.8.1
+
+### Patch Changes
+
+-   Ajout de l'extension button-popup : toggle "Afficher en popin" dans la sidebar Gutenberg pour le bloc core/button, affichant les formulaires HubSpot dans une modal responsive avec iframe sandboxée.
+
 ## 1.8.0
 
 ### Minor Changes

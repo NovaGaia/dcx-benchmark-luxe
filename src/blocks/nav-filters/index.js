@@ -91,6 +91,26 @@ function resolveWpPresetVar( value ) {
 }
 
 /**
+ * Génère la règle CSS de bordure selon le mode (unifié ou par côté).
+ * @param {Object} border Objet de configuration de bordure.
+ * @return {string|null} Règle CSS ou null.
+ */
+function getBorderRule( border ) {
+	if ( border?.width ) {
+		return 'border-width: var(--nav-item-border-size); border-style: solid; border-color: var(--nav-item-border-color, transparent)';
+	}
+	if (
+		border?.top?.width ||
+		border?.right?.width ||
+		border?.bottom?.width ||
+		border?.left?.width
+	) {
+		return 'border-top-width: var(--nav-item-border-top-size, 0); border-right-width: var(--nav-item-border-right-size, 0); border-bottom-width: var(--nav-item-border-bottom-size, 0); border-left-width: var(--nav-item-border-left-size, 0); border-style: solid; border-color: var(--nav-item-border-color, transparent)';
+	}
+	return null;
+}
+
+/**
  * Panneau de contrôles couleurs pour les items de navigation.
  * @param {Object}   root0               Props du composant.
  * @param {Object}   root0.attributes    Attributs du bloc.
@@ -456,14 +476,7 @@ function NavBlockEditorStyles( { clientId, attributes } ) {
 			navItemBg && `background-color: var(--nav-item-bg)`,
 			shadow && `box-shadow: var(--nav-item-shadow)`,
 			border.radius && `border-radius: var(--nav-item-radius)`,
-			border.width
-				? `border-width: var(--nav-item-border-size); border-style: solid; border-color: var(--nav-item-border-color, transparent)`
-				: border.top?.width ||
-				  border.right?.width ||
-				  border.bottom?.width ||
-				  border.left?.width
-				? `border-top-width: var(--nav-item-border-top-size, 0); border-right-width: var(--nav-item-border-right-size, 0); border-bottom-width: var(--nav-item-border-bottom-size, 0); border-left-width: var(--nav-item-border-left-size, 0); border-style: solid; border-color: var(--nav-item-border-color, transparent)`
-				: null,
+			getBorderRule( border ),
 			( pad.top || pad.bottom ) &&
 				`padding-top: var(--nav-item-padding-top); padding-bottom: var(--nav-item-padding-bottom)`,
 			( pad.left || pad.right ) &&

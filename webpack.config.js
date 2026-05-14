@@ -10,5 +10,8 @@ module.exports = {
 			'./src/extensions/scroll-shadow/index.js',
 		'extensions/scroll-shadow/view':
 			'./src/extensions/scroll-shadow/view.js',
+		'extensions/button-popup/index':
+			'./src/extensions/button-popup/index.js',
+		'extensions/button-popup/view': './src/extensions/button-popup/view.js',
 	} ),
 };
