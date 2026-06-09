@@ -31,11 +31,11 @@ const VAR_MAP = {
 	navItemBg: '--nav-item-bg',
 	navItemBgHover: '--nav-item-bg-hover',
 	navItemColorHover: '--nav-item-color-hover',
-	navItemBorderColor: '--nav-item-border-color',
-	navItemBorderColorTop: '--nav-item-border-color-top',
-	navItemBorderColorRight: '--nav-item-border-color-right',
-	navItemBorderColorBottom: '--nav-item-border-color-bottom',
-	navItemBorderColorLeft: '--nav-item-border-color-left',
+	navItemBorderColor: '--nav-item-bdc',
+	navItemBorderColorTop: '--nav-item-bdc-top',
+	navItemBorderColorRight: '--nav-item-bdc-right',
+	navItemBorderColorBottom: '--nav-item-bdc-bottom',
+	navItemBorderColorLeft: '--nav-item-bdc-left',
 	navItemActiveBg: '--nav-item-active-bg',
 	navItemActiveColor: '--nav-item-active-color',
 };
@@ -97,7 +97,7 @@ function resolveWpPresetVar( value ) {
  */
 function getBorderRule( border ) {
 	if ( border?.width ) {
-		return 'border-width: var(--nav-item-border-size); border-style: solid; border-color: var(--nav-item-border-color, transparent)';
+		return 'border-width: var(--nav-item-border-size); border-style: solid; border-color: var(--nav-item-bdc, transparent)';
 	}
 	if (
 		border?.top?.width ||
@@ -105,7 +105,7 @@ function getBorderRule( border ) {
 		border?.bottom?.width ||
 		border?.left?.width
 	) {
-		return 'border-top-width: var(--nav-item-border-top-size, 0); border-right-width: var(--nav-item-border-right-size, 0); border-bottom-width: var(--nav-item-border-bottom-size, 0); border-left-width: var(--nav-item-border-left-size, 0); border-style: solid; border-color: var(--nav-item-border-color, transparent)';
+		return 'border-top-width: var(--nav-item-border-top-size, 0); border-right-width: var(--nav-item-border-right-size, 0); border-bottom-width: var(--nav-item-border-bottom-size, 0); border-left-width: var(--nav-item-border-left-size, 0); border-style: solid; border-color: var(--nav-item-bdc, transparent)';
 	}
 	return null;
 }
@@ -383,7 +383,7 @@ function NavBlockEditorStyles( { clientId, attributes } ) {
 		const styleId = `dcx-nav-vars-${ clientId }`;
 		doc.getElementById( styleId )?.remove();
 
-		// CSS vars couleurs custom (inclut navItemBorderColor → --nav-item-border-color)
+		// CSS vars couleurs custom (inclut navItemBorderColor → --nav-item-bdc)
 		const colorVarDecls = Object.entries( VAR_MAP )
 			.filter( ( [ attr ] ) => attributes[ attr ] )
 			.map(
@@ -499,13 +499,13 @@ function NavBlockEditorStyles( { clientId, attributes } ) {
 						.join( '; ' ) }; }`
 				: '',
 			navItemBorderColor
-				? `${ itemSel } { border-color: var(--nav-item-border-color); }`
+				? `${ itemSel } { border-color: var(--nav-item-bdc); }`
 				: '',
 			navItemBorderColorTop ||
 			navItemBorderColorRight ||
 			navItemBorderColorBottom ||
 			navItemBorderColorLeft
-				? `${ itemSel } { border-top-color: var(--nav-item-border-color-top, transparent); border-right-color: var(--nav-item-border-color-right, transparent); border-bottom-color: var(--nav-item-border-color-bottom, transparent); border-left-color: var(--nav-item-border-color-left, transparent); }`
+				? `${ itemSel } { border-top-color: var(--nav-item-bdc-top, transparent); border-right-color: var(--nav-item-bdc-right, transparent); border-bottom-color: var(--nav-item-bdc-bottom, transparent); border-left-color: var(--nav-item-bdc-left, transparent); }`
 				: '',
 		]
 			.filter( Boolean )

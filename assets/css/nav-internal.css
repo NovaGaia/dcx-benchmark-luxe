@@ -73,10 +73,10 @@
 		border-radius: var(--nav-item-radius, var(--wp--preset--border-radius--100));
 		border-width: var(--nav-item-border-size, 0);
 		border-style: solid;
-		border-top-color: var(--nav-item-border-color-top, var(--nav-item-border-color, transparent));
-		border-right-color: var(--nav-item-border-color-right, var(--nav-item-border-color, transparent));
-		border-bottom-color: var(--nav-item-border-color-bottom, var(--nav-item-border-color, transparent));
-		border-left-color: var(--nav-item-border-color-left, var(--nav-item-border-color, transparent));
+		border-top-color: var(--nav-item-bdc-top, var(--nav-item-bdc, transparent));
+		border-right-color: var(--nav-item-bdc-right, var(--nav-item-bdc, transparent));
+		border-bottom-color: var(--nav-item-bdc-bottom, var(--nav-item-bdc, transparent));
+		border-left-color: var(--nav-item-bdc-left, var(--nav-item-bdc, transparent));
 		background-color: var(--nav-item-active-bg);
 		color: var(--nav-item-active-color);
 		font-weight: 500;

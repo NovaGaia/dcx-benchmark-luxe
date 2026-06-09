@@ -118,15 +118,15 @@ function dcx_nav_inject_item_styles( string $block_content, array $block ): stri
 
 	$attrs = $block['attrs'] ?? [];
 
-	// Attributs couleur custom (inclut navItemBorderColor → --nav-item-border-color)
+	// Attributs couleur custom (inclut navItemBorderColor → --nav-item-bdc)
 	$color_map = [
 		'navItemBg'               => '--nav-item-bg',
 		'navItemBgHover'          => '--nav-item-bg-hover',
-		'navItemBorderColor'      => '--nav-item-border-color',
-		'navItemBorderColorTop'   => '--nav-item-border-color-top',
-		'navItemBorderColorRight' => '--nav-item-border-color-right',
-		'navItemBorderColorBottom'=> '--nav-item-border-color-bottom',
-		'navItemBorderColorLeft'  => '--nav-item-border-color-left',
+		'navItemBorderColor'      => '--nav-item-bdc',
+		'navItemBorderColorTop'   => '--nav-item-bdc-top',
+		'navItemBorderColorRight' => '--nav-item-bdc-right',
+		'navItemBorderColorBottom'=> '--nav-item-bdc-bottom',
+		'navItemBorderColorLeft'  => '--nav-item-bdc-left',
 		'navItemColorHover'       => '--nav-item-color-hover',
 		'navItemActiveBg'         => '--nav-item-active-bg',
 		'navItemActiveColor'      => '--nav-item-active-color',
