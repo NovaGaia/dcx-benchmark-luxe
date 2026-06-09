@@ -26,6 +26,7 @@ $items          = isset( $attributes['items'] ) && is_array( $attributes['items'
 $chart_type     = isset( $attributes['chartType'] ) && 'pie' === $attributes['chartType'] ? 'pie' : 'bar';
 $insight_text   = isset( $attributes['insightText'] ) ? $attributes['insightText'] : '';
 $modal_body     = isset( $attributes['modalBody'] ) ? $attributes['modalBody'] : '';
+$insight_mode   = isset( $attributes['insightMode'] ) && 'inline' === $attributes['insightMode'] ? 'inline' : 'modal';
 $value_suffix   = isset( $attributes['valueSuffix'] ) ? $attributes['valueSuffix'] : '%';
 $x_max          = isset( $attributes['xMax'] ) ? intval( $attributes['xMax'] ) : 100;
 $labels = [];
@@ -83,7 +84,20 @@ $wrapper_attributes = get_block_wrapper_attributes( [ 'class' => 'dcx-bar-chart'
 	</ul>
 	<?php endif; ?>
 
-	<?php if ( $insight_text ) : ?>
+	<?php if ( 'inline' === $insight_mode && ( $insight_text || $modal_body ) ) : ?>
+	<div class="dcx-bar-chart__insight-inline">
+		<?php if ( $insight_text ) : ?>
+		<p class="dcx-bar-chart__insight-inline-title">
+			<?php echo wp_kses_post( $insight_text ); ?>
+		</p>
+		<?php endif; ?>
+		<?php if ( $modal_body ) : ?>
+		<div class="dcx-bar-chart__insight-inline-body">
+			<?php echo wp_kses_post( $modal_body ); ?>
+		</div>
+		<?php endif; ?>
+	</div>
+	<?php elseif ( 'modal' === $insight_mode && $insight_text ) : ?>
 	<div class="dcx-bar-chart__insight">
 		<div class="wp-block-buttons is-content-justification-center is-layout-flex">
 			<div class="wp-block-button">
@@ -98,9 +112,6 @@ $wrapper_attributes = get_block_wrapper_attributes( [ 'class' => 'dcx-bar-chart'
 			</div>
 		</div>
 	</div>
-	<?php endif; ?>
-
-	<?php if ( $insight_text ) : ?>
 	<div
 		id="<?php echo esc_attr( $modal_id ); ?>"
 		class="dcx-bar-chart__modal"

@@ -49,6 +49,11 @@
     "xMax": {
       "type": "number",
       "default": 100
+    },
+    "insightMode": {
+      "type": "string",
+      "default": "modal",
+      "enum": ["modal", "inline"]
     }
   },
   "supports": {

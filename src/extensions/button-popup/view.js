@@ -42,7 +42,10 @@
 	}
 
 	function handleClick( e ) {
-		const link = e.target.closest( 'a.has-popup, button.has-popup, div.has-popup' ) || e.target.closest( '[data-popup-url]' );
+		const link =
+			e.target.closest(
+				'a.has-popup, button.has-popup, div.has-popup'
+			) || e.target.closest( '[data-popup-url]' );
 		if ( ! link ) {
 			return;
 		}
@@ -62,7 +65,9 @@
 		}
 	}
 
-	const buttons = document.querySelectorAll( 'a.has-popup, button.has-popup, div.has-popup, [data-popup-url]' );
+	const buttons = document.querySelectorAll(
+		'a.has-popup, button.has-popup, div.has-popup, [data-popup-url]'
+	);
 	if ( ! buttons.length ) {
 		return;
 	}

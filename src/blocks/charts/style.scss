@@ -61,6 +61,28 @@
 		}
 	}
 
+	&__insight-inline {
+		padding: 1rem 1.25rem;
+		background: #f5fafc;
+		border-left: 3px solid #4cb8c4;
+		border-radius: 0 4px 4px 0;
+	}
+
+	&__insight-inline-title {
+		margin: 0 0 0.5rem;
+		font-weight: 700;
+
+		&::before {
+			content: "💡 ";
+		}
+	}
+
+	&__insight-inline-body {
+		margin: 0;
+		font-size: 0.9rem;
+		line-height: 1.6;
+	}
+
 	// Aperçu modale (éditeur uniquement)
 	&__modal-preview {
 		border: 1px dashed #c0c0c0;
