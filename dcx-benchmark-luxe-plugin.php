@@ -3,7 +3,7 @@
  * Plugin Name: DCX Benchmark Luxe
  * Plugin URI:  https://github.com/NovaGaia/dcx-benchmark-luxe
  * Description: Blocs Gutenberg pour DCX Benchmark Luxe.
- * Version:     1.8.4
+ * Version:     1.9.0
  * Author:      DCX
  * Author URI:  https://example.com
  * License:     GPL-2.0+
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'DCX_BENCHMARK_LUXE_VERSION', '1.8.4' );
+define( 'DCX_BENCHMARK_LUXE_VERSION', '1.9.0' );
 
 // Mises à jour automatiques via GitHub Releases (plugin-update-checker).
 if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
