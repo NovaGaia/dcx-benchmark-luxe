@@ -1,5 +1,16 @@
 # dcx-benchmark-luxe-plugin
 
+## 1.9.0
+
+### Minor Changes
+
+-   d792ade: feat(charts): add inline display mode for insights
+
+    New toggle in the "Affichage" sidebar panel lets editors switch between:
+
+    -   modal mode (existing behaviour: button + popup)
+    -   inline mode: insight title and body rendered directly in the block, no button, no modal
+
 ## 1.8.4
 
 ### Patch Changes
